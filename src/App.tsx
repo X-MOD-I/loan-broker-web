@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import './App.css';
 import LoanApplicationForm from './components/LoanApplicationForm';
+import { Testimonial, FAQ, AppState } from './types';
 
-function App() {
-  const [activeFaq, setActiveFaq] = useState(null);
-  const [showApplicationForm, setShowApplicationForm] = useState(false);
+const App: React.FC = () => {
+  const [state, setState] = useState<AppState>({
+    activeFaq: null,
+    showApplicationForm: false
+  });
 
-  const toggleFaq = (index) => {
-    setActiveFaq(activeFaq === index ? null : index);
+  const toggleFaq = (index: number): void => {
+    setState(prev => ({
+      ...prev,
+      activeFaq: prev.activeFaq === index ? null : index
+    }));
   };
 
-  const openApplicationForm = () => {
-    setShowApplicationForm(true);
+  const openApplicationForm = (): void => {
+    setState(prev => ({ ...prev, showApplicationForm: true }));
   };
 
-  const closeApplicationForm = () => {
-    setShowApplicationForm(false);
+  const closeApplicationForm = (): void => {
+    setState(prev => ({ ...prev, showApplicationForm: false }));
   };
 
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       name: "Sarah Mitchell",
       text: "Ankush was more than a broker, very professional and truthful. He was able to guide me through the loan application process right till the settlement. Deserve my 5 star.",
@@ -51,7 +57,7 @@ function App() {
     }
   ];
 
-  const faqs = [
+  const faqs: FAQ[] = [
     {
       question: "What is Chop Loans?",
       answer: "Chop Loans is a comprehensive financial services platform offering a range of products, including personal loans, home loans, business loans, and financial advisory services. Our goal is to help individuals and families achieve financial stability and growth through tailored financial solutions."
@@ -74,6 +80,18 @@ function App() {
     }
   ];
 
+  const renderStars = (count: number): string => {
+    return '⭐'.repeat(count);
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string): void => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="App">
       {/* Header */}
@@ -81,13 +99,13 @@ function App() {
         <nav className="nav-container">
           <a href="#home" className="logo">Chop Loans</a>
           <ul className="nav-menu">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#testimonials">Reviews</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Services</a></li>
+            <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
+            <li><a href="#process" onClick={(e) => handleNavClick(e, 'process')}>Process</a></li>
+            <li><a href="#testimonials" onClick={(e) => handleNavClick(e, 'testimonials')}>Reviews</a></li>
+            <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a></li>
           </ul>
-          <button className="mobile-menu-toggle">☰</button>
+          <button className="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
         </nav>
       </header>
 
@@ -149,7 +167,7 @@ function App() {
           </div>
 
           <div style={{textAlign: 'center', marginTop: '2rem'}}>
-            <a href="#contact" className="cta-button">Explore All Options</a>
+            <a href="#contact" className="cta-button" onClick={(e) => handleNavClick(e, 'contact')}>Explore All Options</a>
           </div>
         </div>
       </section>
@@ -201,7 +219,7 @@ function App() {
             <p>
               Our commitment to providing competitive rates, flexible terms, and expert financial advice sets us apart in the industry. Whether you're looking to manage debt, plan for the future, or secure financing for major purchases, Chop Loans is your trusted partner in financial success.
             </p>
-            <a href="#contact" className="cta-button">Learn More About Us</a>
+            <a href="#contact" className="cta-button" onClick={(e) => handleNavClick(e, 'contact')}>Learn More About Us</a>
           </div>
 
           <div className="founder-info">
@@ -223,10 +241,10 @@ function App() {
           <h2 className="section-title">Words of Appreciation from Our Valued Customers!!</h2>
           
           <div className="testimonials-grid">
-            {testimonials.map((testimonial, index) => (
+            {testimonials.map((testimonial: Testimonial, index: number) => (
               <div key={index} className="testimonial-card">
                 <div className="stars">
-                  {'⭐'.repeat(testimonial.stars)}
+                  {renderStars(testimonial.stars)}
                 </div>
                 <p>"{testimonial.text}"</p>
                 <div className="testimonial-author">- {testimonial.name}</div>
@@ -244,17 +262,18 @@ function App() {
             The Quickest way to get around Your Questions!
           </p>
           
-          {faqs.map((faq, index) => (
+          {faqs.map((faq: FAQ, index: number) => (
             <div key={index} className="faq-item">
               <button 
                 className="faq-question"
                 onClick={() => toggleFaq(index)}
-                aria-expanded={activeFaq === index}
+                aria-expanded={state.activeFaq === index}
+                type="button"
               >
                 {faq.question}
-                <span>{activeFaq === index ? '−' : '+'}</span>
+                <span>{state.activeFaq === index ? '−' : '+'}</span>
               </button>
-              <div className={`faq-answer ${activeFaq === index ? '' : 'hidden'}`}>
+              <div className={`faq-answer ${state.activeFaq === index ? '' : 'hidden'}`}>
                 {faq.answer}
               </div>
             </div>
@@ -282,33 +301,33 @@ function App() {
             <div className="footer-section">
               <h3>Mortgage Loans</h3>
               <ul>
-                <li><a href="#home">First time home buyers Loans</a></li>
-                <li><a href="#home">Standard Variable Loans</a></li>
-                <li><a href="#home">Basic Variable Loans</a></li>
-                <li><a href="#home">Investment Property Loans</a></li>
-                <li><a href="#home">Offset Account Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>First time home buyers Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Standard Variable Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Basic Variable Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Investment Property Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Offset Account Loans</a></li>
               </ul>
             </div>
 
             <div className="footer-section">
               <h3>Personal Loans</h3>
               <ul>
-                <li><a href="#home">Secured & Unsecured Loans</a></li>
-                <li><a href="#home">Short Term Loans</a></li>
-                <li><a href="#home">Temporary Visa Loans</a></li>
-                <li><a href="#home">Guarantor Loans</a></li>
-                <li><a href="#home">Low Doc Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Secured & Unsecured Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Short Term Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Temporary Visa Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Guarantor Loans</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Low Doc Loans</a></li>
               </ul>
             </div>
 
             <div className="footer-section">
               <h3>Business Loans</h3>
               <ul>
-                <li><a href="#home">Development Finance Loan</a></li>
-                <li><a href="#home">Merchant Cash Advance</a></li>
-                <li><a href="#home">Secured Business Loan</a></li>
-                <li><a href="#home">Commercial Property Loan</a></li>
-                <li><a href="#home">Equipment Finance Loan</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Development Finance Loan</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Merchant Cash Advance</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Secured Business Loan</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Commercial Property Loan</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Equipment Finance Loan</a></li>
               </ul>
             </div>
 
@@ -330,11 +349,11 @@ function App() {
       </footer>
 
       {/* Loan Application Form Modal */}
-      {showApplicationForm && (
+      {state.showApplicationForm && (
         <LoanApplicationForm onClose={closeApplicationForm} />
       )}
     </div>
   );
-}
+};
 
 export default App; 

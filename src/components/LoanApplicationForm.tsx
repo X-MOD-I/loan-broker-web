@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './LoanApplicationForm.css';
+import { LoanFormData, LoanApplicationFormProps, FormInputChangeEvent, FormSubmitEvent, LoanType, EmploymentStatus } from '../types';
 
-const LoanApplicationForm = ({ onClose }) => {
-  const [formData, setFormData] = useState({
+const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) => {
+  const [formData, setFormData] = useState<LoanFormData>({
     firstName: '',
     lastName: '',
     email: '',
@@ -14,18 +15,37 @@ const LoanApplicationForm = ({ onClose }) => {
     income: ''
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const handleChange = (e: FormInputChangeEvent): void => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = (): boolean => {
+    const requiredFields: (keyof LoanFormData)[] = [
+      'firstName', 'lastName', 'email', 'phone', 'loanType', 'loanAmount', 'employment', 'income'
+    ];
+    
+    return requiredFields.every(field => formData[field].trim() !== '');
+  };
+
+  const handleSubmit = async (e: FormSubmitEvent): Promise<void> => {
     e.preventDefault();
     
-    // Create email body with form data
-    const emailBody = `
+    if (!validateForm()) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // Create email body with form data
+      const emailBody = `
 New Loan Application from ${formData.firstName} ${formData.lastName}
 
 Contact Information:
@@ -41,20 +61,50 @@ Loan Details:
 - Annual Income: $${formData.income}
 
 Please contact this customer at your earliest convenience.
-    `.trim();
+      `.trim();
 
-    // Create mailto link
-    const mailtoLink = `mailto:ankush@choploans.com.au?subject=New Loan Application - ${formData.firstName} ${formData.lastName}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Show success message
-    alert('Thank you for your application! Your email client will open to send the application to Ankush Chopra. If it doesn\'t open automatically, please email ankush@choploans.com.au directly.');
-    
-    // Close form
+      // Create mailto link
+      const mailtoLink = `mailto:ankush@choploans.com.au?subject=New Loan Application - ${formData.firstName} ${formData.lastName}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      alert('Thank you for your application! Your email client will open to send the application to Ankush Chopra. If it doesn\'t open automatically, please email ankush@choploans.com.au directly.');
+      
+      // Close form
+      onClose();
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your application. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleClose = (): void => {
     onClose();
   };
+
+  const loanTypeOptions = [
+    { value: LoanType.HOME_LOAN, label: 'Home Loan' },
+    { value: LoanType.REFINANCING, label: 'Refinancing' },
+    { value: LoanType.INVESTMENT_PROPERTY, label: 'Investment Property' },
+    { value: LoanType.PERSONAL_LOAN, label: 'Personal Loan' },
+    { value: LoanType.BUSINESS_LOAN, label: 'Business Loan' },
+    { value: LoanType.COMMERCIAL_LOAN, label: 'Commercial Loan' },
+    { value: LoanType.CAR_LOAN, label: 'Car Loan' }
+  ];
+
+  const employmentOptions = [
+    { value: EmploymentStatus.FULL_TIME, label: 'Full-time Employee' },
+    { value: EmploymentStatus.PART_TIME, label: 'Part-time Employee' },
+    { value: EmploymentStatus.SELF_EMPLOYED, label: 'Self-employed' },
+    { value: EmploymentStatus.CONTRACTOR, label: 'Contractor' },
+    { value: EmploymentStatus.BUSINESS_OWNER, label: 'Business Owner' },
+    { value: EmploymentStatus.RETIRED, label: 'Retired' },
+    { value: EmploymentStatus.OTHER, label: 'Other' }
+  ];
 
   return (
     <div className="form-overlay">
@@ -62,7 +112,14 @@ Please contact this customer at your earliest convenience.
         <div className="form-header">
           <h2>Loan Pre-Application Form</h2>
           <p>Credit Check Free - Get pre-approved in 24-48 hours</p>
-          <button className="close-button" onClick={onClose}>&times;</button>
+          <button 
+            className="close-button" 
+            onClick={handleClose}
+            type="button"
+            aria-label="Close form"
+          >
+            &times;
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="loan-form">
@@ -76,6 +133,7 @@ Please contact this customer at your earliest convenience.
                 required
                 value={formData.firstName}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
             </div>
             <div className="form-group">
@@ -87,6 +145,7 @@ Please contact this customer at your earliest convenience.
                 required
                 value={formData.lastName}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -101,6 +160,7 @@ Please contact this customer at your earliest convenience.
                 required
                 value={formData.email}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
             </div>
             <div className="form-group">
@@ -112,6 +172,7 @@ Please contact this customer at your earliest convenience.
                 required
                 value={formData.phone}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -125,15 +186,14 @@ Please contact this customer at your earliest convenience.
                 required
                 value={formData.loanType}
                 onChange={handleChange}
+                disabled={isSubmitting}
               >
                 <option value="">Select Loan Type</option>
-                <option value="home-loan">Home Loan</option>
-                <option value="refinancing">Refinancing</option>
-                <option value="investment-property">Investment Property</option>
-                <option value="personal-loan">Personal Loan</option>
-                <option value="business-loan">Business Loan</option>
-                <option value="commercial-loan">Commercial Loan</option>
-                <option value="car-loan">Car Loan</option>
+                {loanTypeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="form-group">
@@ -146,6 +206,9 @@ Please contact this customer at your earliest convenience.
                 placeholder="e.g., 500000"
                 value={formData.loanAmount}
                 onChange={handleChange}
+                disabled={isSubmitting}
+                min="1000"
+                step="1000"
               />
             </div>
           </div>
@@ -155,10 +218,11 @@ Please contact this customer at your earliest convenience.
             <textarea
               id="purpose"
               name="purpose"
-              rows="3"
+              rows={3}
               placeholder="Tell us how you plan to use this loan..."
               value={formData.purpose}
               onChange={handleChange}
+              disabled={isSubmitting}
             />
           </div>
 
@@ -171,15 +235,14 @@ Please contact this customer at your earliest convenience.
                 required
                 value={formData.employment}
                 onChange={handleChange}
+                disabled={isSubmitting}
               >
                 <option value="">Select Employment Status</option>
-                <option value="full-time">Full-time Employee</option>
-                <option value="part-time">Part-time Employee</option>
-                <option value="self-employed">Self-employed</option>
-                <option value="contractor">Contractor</option>
-                <option value="business-owner">Business Owner</option>
-                <option value="retired">Retired</option>
-                <option value="other">Other</option>
+                {employmentOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="form-group">
@@ -192,13 +255,20 @@ Please contact this customer at your earliest convenience.
                 placeholder="e.g., 80000"
                 value={formData.income}
                 onChange={handleChange}
+                disabled={isSubmitting}
+                min="20000"
+                step="1000"
               />
             </div>
           </div>
 
           <div className="form-footer">
-            <button type="submit" className="submit-button">
-              Submit Pre-Application
+            <button 
+              type="submit" 
+              className="submit-button"
+              disabled={isSubmitting || !validateForm()}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit Pre-Application'}
             </button>
             <p className="form-note">
               * This is a credit check free pre-application. Ankush will contact you within 24 hours to discuss your options.
