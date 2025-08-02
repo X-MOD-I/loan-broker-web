@@ -167,10 +167,7 @@ const App: React.FC = () => {
             </button>
             <button onClick={openApplicationForm} className="cta-button secondary">Apply Here (No Credit Check)</button>
           </div>
-          <div className="hero-contact-info">
-            <span className="hero-phone">📞 1300 CHOP LOANS</span>
-            <span className="hero-rating">⭐ 5.0 Rating | 100+ Happy Clients</span>
-          </div>
+
         </div>
       </section>
 
