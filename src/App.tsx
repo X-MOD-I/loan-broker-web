@@ -102,9 +102,9 @@ const App: React.FC = () => {
       {/* Clean Header */}
       <header className="header">
         <nav className="nav-container">
-          <a href="#home" className="logo" onClick={(e) => handleNavClick(e, 'home')}>
-            Chop Loans
-          </a>
+                          <a href="#home" className="logo" onClick={(e) => handleNavClick(e, 'home')}>
+                  <img src="/images/logos/logo.png" alt="Chop Loans" className="logo-image" />
+                </a>
           
           <ul className="nav-menu">
             <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Services</a></li>
