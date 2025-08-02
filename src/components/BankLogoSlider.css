@@ -1,0 +1,248 @@
+/* Bank Logo Slider Styles */
+.logo-slide-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-slide-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.section-logo {
+  position: relative;
+  z-index: 2;
+}
+
+.page-padding {
+  padding: 0 2rem;
+}
+
+.container-large {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.padding-vertical {
+  padding: 2rem 0;
+}
+
+.padding-xxlarge {
+  padding: 4rem 0;
+}
+
+.logo-slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-component-slider {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  animation: scroll-left 40s linear infinite;
+  width: max-content;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 200px;
+  height: 100px;
+}
+
+.logo-slider-img {
+  max-height: 80px;
+  max-width: 180px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: opacity(1);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-fallback {
+  display: none;
+  font-weight: 600;
+  color: #1e40af;
+  font-size: 1.1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  min-width: 150px;
+}
+
+.logo-slider-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Infinite scroll animation */
+@keyframes scroll-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(-200px * 13 - 3rem * 13), 0, 0);
+  }
+}
+
+/* Pause animation on hover */
+.logo-component-slider:hover {
+  animation-play-state: paused;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .logo-item {
+    width: 180px;
+    height: 90px;
+  }
+  
+  .logo-slider-img {
+    max-height: 70px;
+    max-width: 160px;
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .logo-component-slider {
+    gap: 2.5rem;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(calc(-180px * 13 - 2.5rem * 13), 0, 0);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-item {
+    width: 150px;
+    height: 80px;
+  }
+  
+  .logo-slider-img {
+    max-height: 60px;
+    max-width: 130px;
+    padding: 0.6rem 1rem;
+  }
+  
+  .logo-component-slider {
+    gap: 2rem;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(calc(-150px * 13 - 2rem * 13), 0, 0);
+    }
+  }
+  
+  .page-padding {
+    padding: 0 1.5rem;
+  }
+  
+  .padding-xxlarge {
+    padding: 2rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-item {
+    width: 120px;
+    height: 70px;
+  }
+  
+  .logo-slider-img {
+    max-height: 50px;
+    max-width: 100px;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .logo-fallback {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+  
+  .logo-component-slider {
+    gap: 1.5rem;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(calc(-120px * 13 - 1.5rem * 13), 0, 0);
+    }
+  }
+  
+  .page-padding {
+    padding: 0 1rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logo-component-slider {
+    animation: none;
+  }
+  
+  .logo-slider-img {
+    filter: opacity(1);
+  }
+}
+
+/* Loading state */
+.logo-slider-img[src=""] {
+  display: none;
+}
+
+.logo-slider-img[src=""]:after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 2s infinite;
+  border-radius: 8px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

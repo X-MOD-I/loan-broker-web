@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import LoanApplicationForm from './components/LoanApplicationForm';
+import BankLogoSlider from './components/BankLogoSlider';
 import { Testimonial, FAQ, AppState } from './types';
 
 const App: React.FC = () => {
@@ -171,6 +172,9 @@ const App: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Bank Logo Slider Section */}
+      <BankLogoSlider />
 
       {/* Process Section */}
       <section id="process" className="process">
