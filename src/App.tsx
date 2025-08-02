@@ -186,25 +186,25 @@ const App: React.FC = () => {
           
           <div className="process-steps">
             <div className="process-step">
-              <div className="step-number">1</div>
+              <img src="/images/process/preapprovalform.svg" alt="Pre-approval Form" className="step-icon" />
               <h3>Pre-approval Form</h3>
               <p>All our Pre-Approval forms are Credit Check free. Get started with no impact on your credit score.</p>
             </div>
 
             <div className="process-step">
-              <div className="step-number">2</div>
+              <img src="/images/process/compareloan.svg" alt="Compare Loans" className="step-icon" />
               <h3>Comparing Loans</h3>
               <p>Once we receive your form, we assess and get you several options to choose from with competitive rates.</p>
             </div>
 
             <div className="process-step">
-              <div className="step-number">3</div>
+              <img src="/images/process/submitloan.svg" alt="Submit Documents" className="step-icon" />
               <h3>Submit Documents</h3>
               <p>Once you choose your lender, we ask you to submit the required documents for final approval.</p>
             </div>
 
             <div className="process-step">
-              <div className="step-number">4</div>
+              <img src="/images/process/done-deal.svg" alt="Loan Approved" className="step-icon" />
               <h3>Loan Deposit</h3>
               <p>Then in 24-48hrs you receive the funds in your bank account. Simple and fast!</p>
             </div>

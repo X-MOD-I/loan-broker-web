@@ -1,0 +1,9 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple money/success icon -->
+  <rect x="30" y="50" width="60" height="40" fill="#10b981" rx="5"/>
+  <text x="60" y="75" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="white">$$$</text>
+  
+  <!-- Success checkmark -->
+  <circle cx="85" cy="25" r="12" fill="#059669"/>
+  <path d="M80 25 L84 29 L90 21" stroke="white" stroke-width="2" fill="none"/>
+</svg>

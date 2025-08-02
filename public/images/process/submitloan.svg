@@ -1,0 +1,10 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple folder icon -->
+  <path d="M25 35 L40 35 L45 45 L95 45 L95 85 L25 85 Z" fill="#f59e0b"/>
+  <rect x="30" y="50" width="60" height="30" fill="#ffffff" rx="2"/>
+  
+  <!-- Upload arrow -->
+  <circle cx="85" cy="25" r="10" fill="#10b981"/>
+  <path d="M85 20 L85 30" stroke="white" stroke-width="2"/>
+  <path d="M81 24 L85 20 L89 24" stroke="white" stroke-width="2" fill="none"/>
+</svg>

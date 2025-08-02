@@ -1,0 +1,13 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple comparison icon -->
+  <rect x="20" y="40" width="25" height="40" rx="3" fill="#8b5cf6"/>
+  <rect x="75" y="50" width="25" height="30" rx="3" fill="#06b6d4"/>
+  
+  <!-- Arrows -->
+  <path d="M50 45 L70 45" stroke="#374151" stroke-width="3"/>
+  <path d="M65 40 L70 45 L65 50" stroke="#374151" stroke-width="3" fill="none"/>
+  
+  <!-- Dollar signs -->
+  <text x="32" y="30" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#059669">$</text>
+  <text x="87" y="40" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#059669">$</text>
+</svg>

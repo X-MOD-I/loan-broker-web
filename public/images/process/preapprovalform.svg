@@ -1,0 +1,12 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple document icon -->
+  <rect x="30" y="20" width="60" height="80" rx="5" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <rect x="35" y="30" width="50" height="5" rx="2" fill="#ffffff"/>
+  <rect x="35" y="40" width="40" height="3" rx="1" fill="#ffffff"/>
+  <rect x="35" y="50" width="45" height="3" rx="1" fill="#ffffff"/>
+  <rect x="35" y="60" width="35" height="3" rx="1" fill="#ffffff"/>
+  
+  <!-- Checkmark -->
+  <circle cx="85" cy="35" r="12" fill="#10b981"/>
+  <path d="M80 35 L84 39 L90 31" stroke="white" stroke-width="2" fill="none"/>
+</svg>
