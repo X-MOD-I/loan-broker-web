@@ -46,6 +46,8 @@ export interface LoanApplicationFormProps {
 export interface AppState {
   activeFaq: number | null;
   showApplicationForm: boolean;
+  showMobileMenu: boolean;
+  showDiscoveryForm: boolean;
 }
 
 // Contact Information Types

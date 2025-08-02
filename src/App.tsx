@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import './App.css';
+import './components/HeaderStyles.css';
 import LoanApplicationForm from './components/LoanApplicationForm';
 import BankLogoSlider from './components/BankLogoSlider';
+import DiscoveryCallForm from './components/DiscoveryCallForm';
 import { Testimonial, FAQ, AppState } from './types';
 
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
     activeFaq: null,
-    showApplicationForm: false
+    showApplicationForm: false,
+    showMobileMenu: false,
+    showDiscoveryForm: false
   });
 
   const toggleFaq = (index: number): void => {
@@ -95,10 +99,13 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      {/* Header */}
+      {/* Clean Header */}
       <header className="header">
         <nav className="nav-container">
-          <a href="#home" className="logo">Chop Loans</a>
+          <a href="#home" className="logo" onClick={(e) => handleNavClick(e, 'home')}>
+            Chop Loans
+          </a>
+          
           <ul className="nav-menu">
             <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Services</a></li>
             <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
@@ -106,8 +113,44 @@ const App: React.FC = () => {
             <li><a href="#testimonials" onClick={(e) => handleNavClick(e, 'testimonials')}>Reviews</a></li>
             <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a></li>
           </ul>
-          <button className="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+
+          <div className="header-right">
+            <button 
+              onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))}
+              className="header-cta-btn"
+            >
+              Free Discovery Call
+            </button>
+          </div>
+
+          <button 
+            className="mobile-menu-toggle" 
+            onClick={() => setState(prev => ({...prev, showMobileMenu: !prev.showMobileMenu}))}
+            aria-label="Toggle mobile menu"
+          >
+            ☰
+          </button>
         </nav>
+
+        {state.showMobileMenu && (
+          <div className="mobile-nav">
+            <a href="#services" onClick={(e) => { handleNavClick(e, 'services'); setState(prev => ({...prev, showMobileMenu: false})); }}>Services</a>
+            <a href="#about" onClick={(e) => { handleNavClick(e, 'about'); setState(prev => ({...prev, showMobileMenu: false})); }}>About</a>
+            <a href="#process" onClick={(e) => { handleNavClick(e, 'process'); setState(prev => ({...prev, showMobileMenu: false})); }}>Process</a>
+            <a href="#testimonials" onClick={(e) => { handleNavClick(e, 'testimonials'); setState(prev => ({...prev, showMobileMenu: false})); }}>Reviews</a>
+            <a href="#contact" onClick={(e) => { handleNavClick(e, 'contact'); setState(prev => ({...prev, showMobileMenu: false})); }}>Contact</a>
+            <div className="mobile-cta">
+              <button 
+                onClick={() => {
+                  setState(prev => ({...prev, showDiscoveryForm: true, showMobileMenu: false}));
+                }}
+                className="mobile-cta-btn"
+              >
+                Free Discovery Call
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -115,7 +158,19 @@ const App: React.FC = () => {
         <div className="hero-container">
           <h1>Unlock Your Financial Goals with Melbourne's Premier Brokerage</h1>
           <p>Melbourne's Top Brokerage - Tailored Solutions for Your Financial Journey with Ankush Chopra!</p>
-          <button onClick={openApplicationForm} className="cta-button">Apply Here (No Credit Check)</button>
+          <div className="hero-cta-buttons">
+            <button 
+              onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))} 
+              className="cta-button primary"
+            >
+              Book Free 15-Min Discovery Call
+            </button>
+            <button onClick={openApplicationForm} className="cta-button secondary">Apply Here (No Credit Check)</button>
+          </div>
+          <div className="hero-contact-info">
+            <span className="hero-phone">📞 1300 CHOP LOANS</span>
+            <span className="hero-rating">⭐ 5.0 Rating | 100+ Happy Clients</span>
+          </div>
         </div>
       </section>
 
@@ -355,6 +410,11 @@ const App: React.FC = () => {
       {/* Loan Application Form Modal */}
       {state.showApplicationForm && (
         <LoanApplicationForm onClose={closeApplicationForm} />
+      )}
+
+      {/* Discovery Call Form Modal */}
+      {state.showDiscoveryForm && (
+        <DiscoveryCallForm onClose={() => setState(prev => ({ ...prev, showDiscoveryForm: false }))} />
       )}
     </div>
   );
