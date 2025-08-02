@@ -76,19 +76,18 @@ const BankLogoSlider: React.FC = () => {
         <div className="page-padding">
           <div className="container-large">
             <div className="padding-vertical padding-xxlarge">
-              <h2 className="section-title" style={{ marginBottom: '1rem', color: '#ffffff', textShadow: '0 3px 15px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.8)' }}>
-                Our Lenders are the Best of the Bests!!
+              <h2 className="section-title" style={{ marginBottom: '1rem', color: '#1f2937', textAlign: 'center' }}>
+                Our Trusted Lending Partners
               </h2>
               <p style={{ 
                 textAlign: 'center', 
                 marginBottom: '4rem', 
-                color: '#ffffff', 
-                fontSize: '1.2rem', 
-                fontWeight: '600', 
+                color: '#6b7280', 
+                fontSize: '1.1rem', 
+                fontWeight: '500', 
                 lineHeight: '1.6', 
                 maxWidth: '800px', 
-                margin: '0 auto 4rem',
-                textShadow: '0 2px 8px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.6)' 
+                margin: '0 auto 4rem'
               }}>
                 We work with Australia's most trusted financial institutions to secure the best rates and terms for our clients.
               </p>
