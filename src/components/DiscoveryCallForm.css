@@ -16,6 +16,13 @@
   animation: fadeIn 0.3s ease-out;
 }
 
+@media (max-width: 768px) {
+  .discovery-form-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -41,6 +48,26 @@
   animation: slideUp 0.4s ease-out forwards;
 }
 
+@media (max-width: 768px) {
+  .discovery-form-container {
+    border-radius: 20px 20px 0 0;
+    max-height: 85vh;
+    margin: 0;
+    transform: translateY(100%);
+    animation: slideUpMobile 0.4s ease-out forwards;
+    max-width: 100%;
+  }
+}
+
+@keyframes slideUpMobile {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @keyframes slideUp {
   to {
     transform: scale(1);
@@ -60,6 +87,13 @@
   position: relative;
   text-align: center;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .discovery-form-header {
+    padding: 2rem 1.5rem;
+    border-radius: 20px 20px 0 0;
+  }
 }
 
 .discovery-form-header::before {
@@ -122,6 +156,12 @@
 .discovery-form {
   padding: 2.5rem;
   background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+}
+
+@media (max-width: 768px) {
+  .discovery-form {
+    padding: 1.5rem;
+  }
 }
 
 .form-row {

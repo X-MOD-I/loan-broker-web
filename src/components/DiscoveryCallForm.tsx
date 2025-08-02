@@ -64,7 +64,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
           <div className="success-content">
             <div className="success-icon">✅</div>
             <h2>Discovery Call Booked!</h2>
-            <p>Thank you for booking your free 15-minute discovery call. We'll contact you within 24 hours to confirm your appointment.</p>
+            <p>Thank you for booking your free 30-minute discovery call. We'll contact you within 24 hours to confirm your appointment.</p>
             <div className="success-details">
               <p><strong>Name:</strong> {formData.name}</p>
               <p><strong>Phone:</strong> {formData.phone}</p>
@@ -80,7 +80,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
     <div className="discovery-form-overlay" onClick={handleOverlayClick}>
       <div className="discovery-form-container">
         <div className="discovery-form-header">
-          <h2>Book Your FREE 15-Minute Discovery Call</h2>
+          <h2>Book Your FREE 30-Minute Discovery Call</h2>
           <p>Schedule a no-obligation consultation with Melbourne's premier mortgage broker</p>
           <button className="close-btn" onClick={onClose} aria-label="Close form">×</button>
         </div>

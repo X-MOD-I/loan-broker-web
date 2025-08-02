@@ -119,7 +119,7 @@ const App: React.FC = () => {
               onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))}
               className="header-cta-btn"
             >
-              Free Discovery Call
+              Free 30-Min Discovery Call
             </button>
           </div>
 
@@ -146,7 +146,7 @@ const App: React.FC = () => {
                 }}
                 className="mobile-cta-btn"
               >
-                Free Discovery Call
+                Free 30-Min Discovery Call
               </button>
             </div>
           </div>
@@ -163,7 +163,7 @@ const App: React.FC = () => {
               onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))} 
               className="cta-button primary"
             >
-              Book Free 15-Min Discovery Call
+                                  Book Free 30-Min Discovery Call
             </button>
             <button onClick={openApplicationForm} className="cta-button secondary">Apply Here (No Credit Check)</button>
           </div>
