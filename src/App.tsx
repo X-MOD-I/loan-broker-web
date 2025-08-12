@@ -165,7 +165,6 @@ const App: React.FC = () => {
             >
                                   Book Free 30-Min Discovery Call
             </button>
-            <button onClick={openApplicationForm} className="cta-button secondary">Apply Here (No Credit Check)</button>
           </div>
 
         </div>
