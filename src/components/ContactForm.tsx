@@ -86,7 +86,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
         <form onSubmit={handleSubmit} className="discovery-form">
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="fullName">Full Name *</label>
+              <label htmlFor="fullName">Full Name <span className="required">*</span></label>
               <input
                 type="text"
                 id="fullName"
@@ -98,7 +98,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="phone">Mobile *</label>
+              <label htmlFor="phone">Mobile <span className="required">*</span></label>
               <input
                 type="tel"
                 id="phone"
@@ -112,7 +112,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email Address *</label>
+            <label htmlFor="email">Email Address <span className="required">*</span></label>
             <input
               type="email"
               id="email"
@@ -126,7 +126,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="loanAmount">Loan Amount (AUD) *</label>
+              <label htmlFor="loanAmount">Loan Amount (AUD) <span className="required">*</span></label>
               <input
                 type="number"
                 id="loanAmount"
