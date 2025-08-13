@@ -183,6 +183,10 @@
   font-size: 0.95rem;
 }
 
+.required {
+  color: #dc2626;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {

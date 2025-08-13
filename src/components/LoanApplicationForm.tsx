@@ -125,7 +125,7 @@ Please contact this customer at your earliest convenience.
         <form onSubmit={handleSubmit} className="loan-form">
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="firstName">First Name *</label>
+              <label htmlFor="firstName">First Name <span className="required">*</span></label>
               <input
                 type="text"
                 id="firstName"
@@ -137,7 +137,7 @@ Please contact this customer at your earliest convenience.
               />
             </div>
             <div className="form-group">
-              <label htmlFor="lastName">Last Name *</label>
+              <label htmlFor="lastName">Last Name <span className="required">*</span></label>
               <input
                 type="text"
                 id="lastName"
@@ -152,7 +152,7 @@ Please contact this customer at your earliest convenience.
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="email">Email Address *</label>
+              <label htmlFor="email">Email Address <span className="required">*</span></label>
               <input
                 type="email"
                 id="email"
@@ -164,7 +164,7 @@ Please contact this customer at your earliest convenience.
               />
             </div>
             <div className="form-group">
-              <label htmlFor="phone">Phone Number *</label>
+              <label htmlFor="phone">Phone Number <span className="required">*</span></label>
               <input
                 type="tel"
                 id="phone"
@@ -179,7 +179,7 @@ Please contact this customer at your earliest convenience.
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="loanType">Loan Type *</label>
+              <label htmlFor="loanType">Loan Type <span className="required">*</span></label>
               <select
                 id="loanType"
                 name="loanType"
@@ -197,7 +197,7 @@ Please contact this customer at your earliest convenience.
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="loanAmount">Loan Amount (AUD) *</label>
+              <label htmlFor="loanAmount">Loan Amount (AUD) <span className="required">*</span></label>
               <input
                 type="number"
                 id="loanAmount"
@@ -228,7 +228,7 @@ Please contact this customer at your earliest convenience.
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="employment">Employment Status *</label>
+              <label htmlFor="employment">Employment Status <span className="required">*</span></label>
               <select
                 id="employment"
                 name="employment"
@@ -246,7 +246,7 @@ Please contact this customer at your earliest convenience.
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="income">Annual Income (AUD) *</label>
+              <label htmlFor="income">Annual Income (AUD) <span className="required">*</span></label>
               <input
                 type="number"
                 id="income"

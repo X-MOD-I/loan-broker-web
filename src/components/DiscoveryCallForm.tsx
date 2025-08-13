@@ -86,7 +86,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
         <form onSubmit={handleSubmit} className="discovery-form">
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="name">Full Name *</label>
+              <label htmlFor="name">Full Name <span className="required">*</span></label>
               <input
                 type="text"
                 id="name"
@@ -98,7 +98,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="phone">Phone Number *</label>
+              <label htmlFor="phone">Phone Number <span className="required">*</span></label>
               <input
                 type="tel"
                 id="phone"
@@ -113,7 +113,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="email">Email Address *</label>
+              <label htmlFor="email">Email Address <span className="required">*</span></label>
               <input
                 type="email"
                 id="email"
