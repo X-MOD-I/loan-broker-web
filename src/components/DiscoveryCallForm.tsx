@@ -10,7 +10,6 @@ interface FormData {
   phone: string;
   email: string;
   preferredTime: string;
-  location: string;
   subject: string;
 }
 
@@ -20,7 +19,6 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
     phone: '',
     email: '',
     preferredTime: '9am - 12pm',
-    location: 'Melbourne CBD',
     subject: ''
   });
 
@@ -113,20 +111,19 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
             </div>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email Address *</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              placeholder="Enter your email address"
-            />
-          </div>
-
           <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="email">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                placeholder="Enter your email address"
+              />
+            </div>
             <div className="form-group">
               <label htmlFor="preferredTime">Preferred Time to Call</label>
               <select
@@ -139,22 +136,6 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
                 <option value="12pm - 3pm">12pm - 3pm</option>
                 <option value="3pm - 6pm">3pm - 6pm</option>
                 <option value="6pm - 9pm">6pm - 9pm</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="location">Location/Region</label>
-              <select
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-              >
-                <option value="Melbourne CBD">Melbourne CBD</option>
-                <option value="North Melbourne">North Melbourne</option>
-                <option value="East Melbourne">East Melbourne</option>
-                <option value="West Melbourne">West Melbourne</option>
-                <option value="South Melbourne">South Melbourne</option>
-                <option value="Other">Other</option>
               </select>
             </div>
           </div>
@@ -172,14 +153,6 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
           </div>
 
           <div className="form-footer">
-            <div className="call-info">
-              <span className="call-icon">📞</span>
-              <div>
-                <strong>Need immediate assistance?</strong>
-                <p>Call us directly: <a href="tel:1300-CHOP-LOANS">1300 CHOP LOANS</a></p>
-              </div>
-            </div>
-            
             <button 
               type="submit" 
               className="submit-btn"

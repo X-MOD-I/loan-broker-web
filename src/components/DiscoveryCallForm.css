@@ -82,7 +82,7 @@
 .discovery-form-header {
   background: linear-gradient(135deg, #059669 0%, #047857 100%);
   color: white;
-  padding: 3rem 2rem;
+  padding: 1.5rem 1.5rem;
   border-radius: 20px 20px 0 0;
   position: relative;
   text-align: center;
@@ -111,7 +111,7 @@
 
 .discovery-form-header h2 {
   margin: 0 0 1rem 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 900;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -120,25 +120,25 @@
 
 .discovery-form-header p {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   opacity: 0.95;
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.4;
   position: relative;
   z-index: 1;
 }
 
 .close-btn {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  right: 1rem;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 1.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  font-size: 1.25rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -315,15 +315,15 @@
 
 .discovery-form-benefits {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  padding: 2rem 2.5rem;
+  padding: 1rem 1.25rem;
   border-radius: 0 0 20px 20px;
   border-top: 1px solid #e5e7eb;
 }
 
 .discovery-form-benefits h4 {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.75rem 0;
   color: #1f2937;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   text-align: center;
 }
@@ -334,13 +334,14 @@
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 0.25rem 0.75rem;
 }
 
 .discovery-form-benefits li {
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   color: #374151;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
   font-weight: 500;
 }
 

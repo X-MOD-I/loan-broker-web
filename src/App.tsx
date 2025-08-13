@@ -4,6 +4,7 @@ import './components/HeaderStyles.css';
 import LoanApplicationForm from './components/LoanApplicationForm';
 import BankLogoSlider from './components/BankLogoSlider';
 import DiscoveryCallForm from './components/DiscoveryCallForm';
+import ContactForm from './components/ContactForm';
 import { Testimonial, FAQ, AppState } from './types';
 
 const App: React.FC = () => {
@@ -11,7 +12,8 @@ const App: React.FC = () => {
     activeFaq: null,
     showApplicationForm: false,
     showMobileMenu: false,
-    showDiscoveryForm: false
+    showDiscoveryForm: false,
+    showContactForm: false
   });
 
   const toggleFaq = (index: number): void => {
@@ -19,10 +21,6 @@ const App: React.FC = () => {
       ...prev,
       activeFaq: prev.activeFaq === index ? null : index
     }));
-  };
-
-  const openApplicationForm = (): void => {
-    setState(prev => ({ ...prev, showApplicationForm: true }));
   };
 
   const closeApplicationForm = (): void => {
@@ -111,7 +109,6 @@ const App: React.FC = () => {
             <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
             <li><a href="#process" onClick={(e) => handleNavClick(e, 'process')}>Process</a></li>
             <li><a href="#testimonials" onClick={(e) => handleNavClick(e, 'testimonials')}>Reviews</a></li>
-            <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a></li>
           </ul>
 
           <div className="header-right">
@@ -120,6 +117,13 @@ const App: React.FC = () => {
               className="header-cta-btn"
             >
               Free 30-Min Discovery Call
+            </button>
+            <button 
+              onClick={() => setState(prev => ({...prev, showContactForm: true}))}
+              className="header-cta-btn request-call"
+              style={{ marginLeft: '0.75rem' }}
+            >
+              Request a Call
             </button>
           </div>
 
@@ -138,7 +142,6 @@ const App: React.FC = () => {
             <a href="#about" onClick={(e) => { handleNavClick(e, 'about'); setState(prev => ({...prev, showMobileMenu: false})); }}>About</a>
             <a href="#process" onClick={(e) => { handleNavClick(e, 'process'); setState(prev => ({...prev, showMobileMenu: false})); }}>Process</a>
             <a href="#testimonials" onClick={(e) => { handleNavClick(e, 'testimonials'); setState(prev => ({...prev, showMobileMenu: false})); }}>Reviews</a>
-            <a href="#contact" onClick={(e) => { handleNavClick(e, 'contact'); setState(prev => ({...prev, showMobileMenu: false})); }}>Contact</a>
             <div className="mobile-cta">
               <button 
                 onClick={() => {
@@ -219,7 +222,7 @@ const App: React.FC = () => {
           </div>
 
           <div style={{textAlign: 'center', marginTop: '2rem'}}>
-            <a href="#contact" className="cta-button" onClick={(e) => handleNavClick(e, 'contact')}>Explore All Options</a>
+            <a href="#contact" className="cta-button" onClick={(e) => { e.preventDefault(); setState(prev => ({...prev, showContactForm: true})); }}>Explore All Options</a>
           </div>
         </div>
       </section>
@@ -274,7 +277,7 @@ const App: React.FC = () => {
             <p>
               Our commitment to providing competitive rates, flexible terms, and expert financial advice sets us apart in the industry. Whether you're looking to manage debt, plan for the future, or secure financing for major purchases, Chop Loans is your trusted partner in financial success.
             </p>
-            <a href="#contact" className="cta-button" onClick={(e) => handleNavClick(e, 'contact')}>Learn More About Us</a>
+            <a href="#contact" className="cta-button" onClick={(e) => { e.preventDefault(); setState(prev => ({...prev, showContactForm: true})); }}>Learn More About Us</a>
           </div>
 
           <div className="founder-info">
@@ -336,18 +339,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Contact/CTA Section */}
-      <section id="contact" className="hero" style={{marginTop: 0}}>
-        <div className="hero-container">
-          <h2 style={{fontSize: '2.5rem'}}>Let's Get You The Best Deals In the Market</h2>
-          <p>All of our Pre-Approval forms would not affect your credit history. Once you fill the form we will get back to you at the earliest.</p>
-          <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2rem'}}>
-            <a href="tel:+61400000000" className="cta-button">Call Now</a>
-            <a href="mailto:ankush@choploans.com.au" className="cta-button">Email Us</a>
-            <button onClick={openApplicationForm} className="cta-button">Apply Now</button>
-          </div>
-        </div>
-      </section>
+      {/* Contact section removed per request; contact available via header button */}
 
       {/* Footer */}
       <footer className="footer">
@@ -411,6 +403,10 @@ const App: React.FC = () => {
       {/* Discovery Call Form Modal */}
       {state.showDiscoveryForm && (
         <DiscoveryCallForm onClose={() => setState(prev => ({ ...prev, showDiscoveryForm: false }))} />
+      )}
+      {/* Contact Form Modal */}
+      {state.showContactForm && (
+        <ContactForm onClose={() => setState(prev => ({ ...prev, showContactForm: false }))} />
       )}
     </div>
   );

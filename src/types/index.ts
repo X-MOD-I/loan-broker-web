@@ -48,6 +48,7 @@ export interface AppState {
   showApplicationForm: boolean;
   showMobileMenu: boolean;
   showDiscoveryForm: boolean;
+  showContactForm: boolean;
 }
 
 // Contact Information Types
