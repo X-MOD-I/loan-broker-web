@@ -306,6 +306,9 @@ const App: React.FC = () => {
                 </div>
                 <p>"{testimonial.text}"</p>
                 <div className="testimonial-author">- {testimonial.name}</div>
+                <span className="testimonial-logo-badge">
+                  <img src="/images/logos/logo.png" alt="Chop Loans" className="testimonial-logo-img" />
+                </span>
               </div>
             ))}
           </div>

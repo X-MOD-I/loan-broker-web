@@ -521,6 +521,35 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
+/* Subtle Chop Loans logo watermark element at bottom-right */
+.testimonial-logo-badge {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 6px;
+  border-radius: 9999px;
+  background: #0f172a;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+  pointer-events: none;
+}
+
+.testimonial-logo-img {
+  width: 70px;
+  height: 70px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 480px) {
+  .testimonial-logo-badge {
+    padding: 5px;
+  }
+  .testimonial-logo-img {
+    width: 58px;
+    height: 58px;
+  }
+}
+
 .testimonial-card p {
   font-style: normal;
   margin-bottom: 1.25rem;
