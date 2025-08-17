@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './LoanApplicationForm.css';
-import { LoanFormData, LoanApplicationFormProps, FormInputChangeEvent, FormSubmitEvent, LoanType, EmploymentStatus } from '../types';
+import { LoanFormData, LoanApplicationFormProps, LoanType, EmploymentStatus } from '../types';
 
 const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) => {
   const [formData, setFormData] = useState<LoanFormData>({
