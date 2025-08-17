@@ -30,16 +30,24 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
       'firstName', 'lastName', 'email', 'phone', 'loanType', 'loanAmount', 'employment', 'income'
     ];
     
-    return requiredFields.every(field => formData[field].trim() !== '');
+    return requiredFields.every(field => {
+      const value = formData[field];
+      return value && value.toString().trim() !== '';
+    });
   };
 
   const handleSubmit = async (e: FormSubmitEvent): Promise<void> => {
     e.preventDefault();
     
+    console.log('Form submitted! Form data:', formData);
+    console.log('Validation result:', validateForm());
+    
     if (!validateForm()) {
       alert('Please fill in all required fields.');
       return;
     }
+    
+    console.log('Validation passed, proceeding with submission...');
 
     setIsSubmitting(true);
     
@@ -57,13 +65,22 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
       data.append('employment', formData.employment);
       data.append('income', formData.income);
 
+      console.log('Submitting loan application:', data.toString());
+
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: data.toString()
       });
 
-      if (!response.ok) throw new Error('Submission failed');
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
+      if (!response.ok) {
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+        throw new Error(`Submission failed: ${response.status}`);
+      }
       
       alert('Thank you for your application! We have received your loan application and will contact you within 24 hours.');
       onClose();
