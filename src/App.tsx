@@ -67,15 +67,15 @@ const App: React.FC = () => {
     },
     {
       question: "How do I apply for a loan with Chop Loans?",
-      answer: "Applying for a loan is simple: Visit our website and navigate to the relevant loan section, Complete the online pre-approval form with your personal and financial information, Submit the application and receive a decision, often within 24-48 hours, If approved, review and accept the loan terms, Receive your funds directly into your bank account."
+      answer: "Applying for a loan is simple: Contact us through our website or call for a free consultation, Discuss your financial goals and loan requirements with our expert broker, We'll compare options from multiple lenders to find the best fit, Complete the application with your chosen lender, Receive your funds directly into your bank account once approved."
     },
     {
       question: "What is the interest rate on loans?",
-      answer: "Interest rates on loans vary based on your credit score, income, loan amount, and loan type. We offer competitive rates, and the exact rate will be provided during the loan approval process. All our pre-approval forms are credit check free."
+      answer: "Interest rates vary based on your credit score, income, loan amount, and loan type. As a broker, we compare rates from multiple lenders to secure the most competitive options for your situation. The exact rate will be provided during the application process with your chosen lender."
     },
     {
       question: "How long does the loan approval process take?",
-      answer: "Our average processing time is less than 48 hours on successful document submissions. Pre-approval can often be obtained within 24 hours, and once you choose your lender and submit required documents, funds are typically available within 24-48 hours."
+      answer: "Processing times vary by lender and loan type. As your broker, we work to streamline the process and keep you informed at every step. Most applications are reviewed within a few business days, and funding timeframes depend on the specific lender's policies and loan complexity."
     }
   ];
 
@@ -148,7 +148,7 @@ const App: React.FC = () => {
       {/* Hero Section */}
       <section id="home" className="hero">
         <div className="hero-container">
-          <h1>Unlock Your Financial Goals with Melbourne's Premier Brokerage</h1>
+          <h1>Chop Chop Loans – Fast, Fair & Always There</h1>
           <p>Melbourne's Top Brokerage - Tailored Solutions for Your Financial Journey with Ankush Chopra!</p>
           <div className="hero-cta-buttons">
             <button 
@@ -167,7 +167,7 @@ const App: React.FC = () => {
         <div className="services-container">
           <h2 className="section-title">Our Best Selling Products</h2>
           <p style={{textAlign: 'center', marginBottom: '4rem', color: '#64748b', fontSize: '1.2rem', fontWeight: '500', lineHeight: '1.6', maxWidth: '800px', margin: '0 auto 4rem'}}>
-            These are our best selling services, but you can still fill the pre-approval form. All our forms are credit-score free. If you still have any doubt, please talk to an Expert.
+            These are our best selling services. We provide comprehensive loan brokerage across all major categories. If you have any questions, please talk to an Expert.
           </p>
           
           <div className="services-grid">
@@ -224,14 +224,14 @@ const App: React.FC = () => {
         <div className="process-container">
           <h2 className="section-title">Our Process for Applying for Loan</h2>
           <p style={{textAlign: 'center', marginBottom: '3rem', color: '#64748b', fontSize: '1.1rem'}}>
-            Our Loan Application process is designed keeping humans in mind. We made the process very simple, credit-check free, and for fast outcomes on applications. Our average processing time is less than 48hrs on successful document submissions.
+            Our loan brokerage process is designed with you in mind. We simplify the complex world of lending by comparing multiple lenders to find the best options for your unique situation. Professional, transparent, and focused on getting you the right loan.
           </p>
           
           <div className="process-steps">
             <div className="process-step">
-              <img src="/images/process/preapprovalform.svg" alt="Pre-approval Form" className="step-icon" />
-              <h3>Pre-approval Form</h3>
-              <p>All our Pre-Approval forms are Credit Check free. Get started with no impact on your credit score.</p>
+              <img src="/images/process/preapprovalform.svg" alt="Initial Consultation" className="step-icon" />
+              <h3>Initial Consultation</h3>
+              <p>Start with a free consultation to discuss your financial goals and loan requirements with our expert broker.</p>
             </div>
 
             <div className="process-step">
@@ -249,7 +249,7 @@ const App: React.FC = () => {
             <div className="process-step">
               <img src="/images/process/done-deal.svg" alt="Loan Approved" className="step-icon" />
               <h3>Loan Deposit</h3>
-              <p>Then in 24-48hrs you receive the funds in your bank account. Simple and fast!</p>
+              <p>Once approved, funds will be deposited to your account according to the lender's standard timeframes. Professional and reliable!</p>
             </div>
           </div>
         </div>
