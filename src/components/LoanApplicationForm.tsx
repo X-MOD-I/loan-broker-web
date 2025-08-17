@@ -37,6 +37,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
     try {
       const data = new URLSearchParams();
       data.append('form-name', 'loan-application');
+      data.append('bot-field', '');
       data.append('firstName', formData.firstName);
       data.append('lastName', formData.lastName);
       data.append('email', formData.email);

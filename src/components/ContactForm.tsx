@@ -44,6 +44,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
     try {
       const data = new URLSearchParams();
       data.append('form-name', 'contact');
+      data.append('bot-field', '');
       data.append('fullName', formData.fullName);
       data.append('email', formData.email);
       data.append('phone', formData.phone);
