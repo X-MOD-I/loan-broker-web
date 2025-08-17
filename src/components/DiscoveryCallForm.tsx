@@ -35,18 +35,44 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.name || !formData.phone || !formData.email) {
+      alert('Please fill in Full Name, Phone Number, and Email Address.');
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setIsSubmitted(true);
-    setIsSubmitting(false);
+    try {
+      const data = new URLSearchParams();
+      data.append('form-name', 'discovery-call');
+      data.append('bot-field', '');
+      data.append('name', formData.name);
+      data.append('phone', formData.phone);
+      data.append('email', formData.email);
+      data.append('preferredTime', formData.preferredTime);
+      data.append('subject', formData.subject);
 
-    // Auto close after 3 seconds
-    setTimeout(() => {
-      onClose();
-    }, 3000);
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
+      });
+
+      if (!response.ok) throw new Error('Submission failed');
+
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+
+      // Auto close after 3 seconds
+      setTimeout(() => {
+        onClose();
+      }, 3000);
+    } catch (error) {
+      console.error('Error submitting discovery call form:', error);
+      alert('There was an error booking your discovery call. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
