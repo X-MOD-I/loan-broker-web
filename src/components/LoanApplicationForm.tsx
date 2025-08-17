@@ -17,44 +17,26 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const handleChange = (e: FormInputChangeEvent): void => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const validateForm = (): boolean => {
-    const requiredFields: (keyof LoanFormData)[] = [
-      'firstName', 'lastName', 'email', 'phone', 'loanType', 'loanAmount', 'employment', 'income'
-    ];
-    
-    return requiredFields.every(field => {
-      const value = formData[field];
-      return value && value.toString().trim() !== '';
-    });
-  };
-
-  const handleSubmit = async (e: FormSubmitEvent): Promise<void> => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    console.log('Form submitted! Form data:', formData);
-    console.log('Validation result:', validateForm());
-    
-    if (!validateForm()) {
+
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.loanType || !formData.loanAmount || !formData.employment || !formData.income) {
       alert('Please fill in all required fields.');
       return;
     }
-    
-    console.log('Validation passed, proceeding with submission...');
 
     setIsSubmitting(true);
-    
+
     try {
       const data = new URLSearchParams();
       data.append('form-name', 'loan-application');
-      data.append('bot-field', ''); // Honeypot field
       data.append('firstName', formData.firstName);
       data.append('lastName', formData.lastName);
       data.append('email', formData.email);
@@ -65,27 +47,18 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
       data.append('employment', formData.employment);
       data.append('income', formData.income);
 
-      console.log('Submitting loan application:', data.toString());
-
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: data.toString()
       });
 
-      console.log('Response status:', response.status);
-      console.log('Response ok:', response.ok);
+      if (!response.ok) throw new Error('Submission failed');
 
-      if (!response.ok) {
-        const responseText = await response.text();
-        console.log('Response text:', responseText);
-        throw new Error(`Submission failed: ${response.status}`);
-      }
-      
       alert('Thank you for your application! We have received your loan application and will contact you within 24 hours.');
       onClose();
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error submitting loan application:', error);
       alert('There was an error submitting your application. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
@@ -133,7 +106,6 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
         </div>
 
         <form onSubmit={handleSubmit} className="loan-form">
-          <input type="hidden" name="bot-field" />
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="firstName">First Name <span className="required">*</span></label>
@@ -143,7 +115,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 name="firstName"
                 required
                 value={formData.firstName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
               />
             </div>
@@ -155,7 +127,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 name="lastName"
                 required
                 value={formData.lastName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
               />
             </div>
@@ -170,7 +142,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 name="email"
                 required
                 value={formData.email}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
               />
             </div>
@@ -182,7 +154,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 name="phone"
                 required
                 value={formData.phone}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
               />
             </div>
@@ -196,7 +168,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 name="loanType"
                 required
                 value={formData.loanType}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
               >
                 <option value="">Select Loan Type</option>
@@ -216,7 +188,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 required
                 placeholder="e.g., 500000"
                 value={formData.loanAmount}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
                 min="1000"
                 step="1000"
@@ -232,7 +204,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
               rows={3}
               placeholder="Tell us how you plan to use this loan..."
               value={formData.purpose}
-              onChange={handleChange}
+              onChange={handleInputChange}
               disabled={isSubmitting}
             />
           </div>
@@ -245,7 +217,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 name="employment"
                 required
                 value={formData.employment}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
               >
                 <option value="">Select Employment Status</option>
@@ -265,7 +237,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
                 required
                 placeholder="e.g., 80000"
                 value={formData.income}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 disabled={isSubmitting}
                 min="20000"
                 step="1000"
@@ -274,11 +246,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
           </div>
 
           <div className="form-footer">
-            <button 
-              type="submit" 
-              className="submit-button"
-              disabled={isSubmitting || !validateForm()}
-            >
+            <button type="submit" className="submit-button" disabled={isSubmitting}>
               {isSubmitting ? 'Submitting...' : 'Submit Pre-Application'}
             </button>
             <p className="form-note">
