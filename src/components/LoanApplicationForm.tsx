@@ -44,35 +44,27 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
     setIsSubmitting(true);
     
     try {
-      // Create email body with form data
-      const emailBody = `
-New Loan Application from ${formData.firstName} ${formData.lastName}
+      const data = new URLSearchParams();
+      data.append('form-name', 'loan-application');
+      data.append('firstName', formData.firstName);
+      data.append('lastName', formData.lastName);
+      data.append('email', formData.email);
+      data.append('phone', formData.phone);
+      data.append('loanType', formData.loanType);
+      data.append('loanAmount', formData.loanAmount);
+      data.append('purpose', formData.purpose);
+      data.append('employment', formData.employment);
+      data.append('income', formData.income);
 
-Contact Information:
-- Name: ${formData.firstName} ${formData.lastName}
-- Email: ${formData.email}
-- Phone: ${formData.phone}
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
+      });
 
-Loan Details:
-- Loan Type: ${formData.loanType}
-- Loan Amount: $${formData.loanAmount}
-- Purpose: ${formData.purpose}
-- Employment Status: ${formData.employment}
-- Annual Income: $${formData.income}
-
-Please contact this customer at your earliest convenience.
-      `.trim();
-
-      // Create mailto link
-      const mailtoLink = `mailto:ankush@choploans.com.au?subject=New Loan Application - ${formData.firstName} ${formData.lastName}&body=${encodeURIComponent(emailBody)}`;
+      if (!response.ok) throw new Error('Submission failed');
       
-      // Open email client
-      window.location.href = mailtoLink;
-      
-      // Show success message
-      alert('Thank you for your application! Your email client will open to send the application to Ankush Chopra. If it doesn\'t open automatically, please email ankush@choploans.com.au directly.');
-      
-      // Close form
+      alert('Thank you for your application! We have received your loan application and will contact you within 24 hours.');
       onClose();
     } catch (error) {
       console.error('Error submitting form:', error);

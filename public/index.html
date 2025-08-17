@@ -17,6 +17,26 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    
+    <!-- Hidden Netlify forms to enable backend processing of React form submissions -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="fullName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="number" name="loanAmount" />
+      <input type="text" name="loanType" />
+      <input type="text" name="bot-field" />
+    </form>
+    <form name="loan-application" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="loanType" />
+      <input type="text" name="loanAmount" />
+      <input type="text" name="purpose" />
+      <input type="text" name="employment" />
+      <input type="text" name="income" />
+      <input type="text" name="bot-field" />
+    </form>
   </body>
 </html> 

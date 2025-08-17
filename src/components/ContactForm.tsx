@@ -42,25 +42,27 @@ const ContactForm: React.FC<ContactFormProps> = ({ onClose }) => {
     setIsSubmitting(true);
 
     try {
-      const emailBody = `New Contact Form Submission\n\n` +
-        `Full Name: ${formData.fullName}\n` +
-        `Email: ${formData.email}\n` +
-        `Mobile: ${formData.phone}\n` +
-        `Loan Amount: $${formData.loanAmount}\n` +
-        `Loan Type (optional): ${formData.loanType || 'N/A'}\n\n` +
-        `Please follow up with this customer.`;
+      const data = new URLSearchParams();
+      data.append('form-name', 'contact');
+      data.append('fullName', formData.fullName);
+      data.append('email', formData.email);
+      data.append('phone', formData.phone);
+      data.append('loanAmount', formData.loanAmount);
+      data.append('loanType', formData.loanType);
 
-      const mailtoLink = `mailto:ankush.ch@gmail.com?subject=${encodeURIComponent(
-        `New Contact - ${formData.fullName}`
-      )}&body=${encodeURIComponent(emailBody)}`;
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
+      });
 
-      window.location.href = mailtoLink;
+      if (!response.ok) throw new Error('Submission failed');
 
-      alert("Thanks! Your email client will open to send the details. If it doesn't, please email ankush.ch@gmail.com directly.");
+      alert('Thanks! We have received your request. We will contact you shortly.');
       onClose();
     } catch (error) {
-      console.error('Error preparing email:', error);
-      alert('There was an error preparing your message. Please try again.');
+      console.error('Error submitting contact form:', error);
+      alert('There was an error submitting your request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
