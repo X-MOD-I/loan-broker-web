@@ -46,6 +46,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
     try {
       const data = new URLSearchParams();
       data.append('form-name', 'loan-application');
+      data.append('bot-field', ''); // Honeypot field
       data.append('firstName', formData.firstName);
       data.append('lastName', formData.lastName);
       data.append('email', formData.email);
@@ -115,6 +116,7 @@ const LoanApplicationForm: React.FC<LoanApplicationFormProps> = ({ onClose }) =>
         </div>
 
         <form onSubmit={handleSubmit} className="loan-form">
+          <input type="hidden" name="bot-field" />
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="firstName">First Name <span className="required">*</span></label>
