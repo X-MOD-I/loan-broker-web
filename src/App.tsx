@@ -107,13 +107,11 @@ const App: React.FC = () => {
             <li><a href="#testimonials" onClick={(e) => handleNavClick(e, 'testimonials')}>Reviews</a></li>
           </ul>
 
-          <div className="header-right">
-            <button 
-              onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))}
-              className="header-cta-btn"
-            >
-              Free 30-Min Discovery Call
-            </button>
+          <div className="header-phone">
+            <a href="tel:+61489210002" className="phone-link">
+              <span className="phone-icon"></span>
+              <span className="phone-number">0489 210 002</span>
+            </a>
           </div>
 
           <button 
@@ -131,6 +129,9 @@ const App: React.FC = () => {
             <a href="#about" onClick={(e) => { handleNavClick(e, 'about'); setState(prev => ({...prev, showMobileMenu: false})); }}>About</a>
             <a href="#process" onClick={(e) => { handleNavClick(e, 'process'); setState(prev => ({...prev, showMobileMenu: false})); }}>Process</a>
             <a href="#testimonials" onClick={(e) => { handleNavClick(e, 'testimonials'); setState(prev => ({...prev, showMobileMenu: false})); }}>Reviews</a>
+            <a href="tel:+61489210002" className="mobile-phone-link">
+              📞 Call 0489 210 002
+            </a>
             <div className="mobile-cta">
               <button 
                 onClick={() => {
@@ -165,48 +166,80 @@ const App: React.FC = () => {
       {/* Services Section */}
       <section id="services" className="services">
         <div className="services-container">
-          <h2 className="section-title">Our Best Selling Products</h2>
-          <p style={{textAlign: 'center', marginBottom: '4rem', color: '#64748b', fontSize: '1.2rem', fontWeight: '500', lineHeight: '1.6', maxWidth: '800px', margin: '0 auto 4rem'}}>
-            These are our best selling services. We provide comprehensive loan brokerage across all major categories. If you have any questions, please talk to an Expert.
-          </p>
+          <h2 className="section-title">Our Lending Services Include</h2>
           
           <div className="services-grid">
             <div className="service-card">
-              <h3>🏠 Mortgage Loans</h3>
-              <ul className="service-list">
-                <li>First-time Home Buyers Loans</li>
-                <li>Home Loans</li>
-                <li>Home Loan Refinancing</li>
-                <li>Investment Property Loans</li>
-                <li>Offset Account Loans</li>
-                <li>Standard & Basic Variable Loans</li>
-              </ul>
+              <div className="service-icon">
+                <span>🏠</span>
+              </div>
+              <h3>Home Loans</h3>
+              <div className="service-items">
+                <span className="service-item">1st Home Buyers</span>
+                <span className="service-item">Construction Loans</span>
+                <span className="service-item">Bridging Loans</span>
+                <span className="service-item">Upgrading/Downsizing</span>
+                <span className="service-item">Self Employed</span>
+              </div>
+              <button 
+                className="service-btn"
+                onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))}
+              >
+                Learn More →
+              </button>
             </div>
 
             <div className="service-card">
-              <h3>🏢 Business Loans</h3>
-              <ul className="service-list">
-                <li>Asset Finance Loan</li>
-                <li>Commercial Loan</li>
-                <li>Secured Business Loans</li>
-                <li>Commercial Property Loans</li>
-                <li>Equipment Finance Loans</li>
-                <li>Business Vehicle Loan</li>
-                <li>Development Finance Loan</li>
-              </ul>
+              <div className="service-icon">
+                <span>📈</span>
+              </div>
+              <h3>Investments</h3>
+              <div className="service-items">
+                <span className="service-item">Tax Effective Loan Structure for Investment Property Loans</span>
+                <span className="service-item">SMSF</span>
+              </div>
+              <button 
+                className="service-btn"
+                onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))}
+              >
+                Learn More →
+              </button>
             </div>
 
             <div className="service-card">
-              <h3>👤 Personal Loans</h3>
-              <ul className="service-list">
-                <li>Personal Loans</li>
-                <li>Refinancing Personal Loan</li>
-                <li>Temporary Visa Loan</li>
-                <li>Short-Term Loan</li>
-                <li>Car or Motorbike Loan</li>
-                <li>Secured & Unsecured Loans</li>
-                <li>Guarantor Loans</li>
-              </ul>
+              <div className="service-icon">
+                <span>🔄</span>
+              </div>
+              <h3>Refinance</h3>
+              <div className="service-items">
+                <span className="service-item">Analysis of current loans</span>
+                <span className="service-item">Comparison of other possible options, with consideration of desired goals and outcomes</span>
+                <span className="service-item">Debt Consolidation</span>
+              </div>
+              <button 
+                className="service-btn"
+                onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))}
+              >
+                Learn More →
+              </button>
+            </div>
+
+            <div className="service-card">
+              <div className="service-icon">
+                <span>💼</span>
+              </div>
+              <h3>Other</h3>
+              <div className="service-items">
+                <span className="service-item">Vehicle Finance</span>
+                <span className="service-item">Personal Loans</span>
+                <span className="service-item">Debt Consolidation</span>
+              </div>
+              <button 
+                className="service-btn"
+                onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))}
+              >
+                Learn More →
+              </button>
             </div>
           </div>
 

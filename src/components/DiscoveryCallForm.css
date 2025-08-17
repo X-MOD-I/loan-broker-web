@@ -14,12 +14,16 @@
   padding: 1rem;
   overflow-y: auto;
   animation: fadeIn 0.3s ease-out;
+  /* Ensure proper viewport handling */
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
 }
 
 @media (max-width: 768px) {
   .discovery-form-overlay {
-    align-items: flex-end;
-    padding: 0;
+    align-items: center;
+    padding: 1rem;
+    justify-content: center;
   }
 }
 
@@ -633,28 +637,45 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .discovery-form-overlay {
-    padding: 0.5rem;
+    padding: 0.75rem;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .discovery-form-container {
-    max-height: 95vh;
+    max-height: 90vh;
+    max-width: 95vw;
+    border-radius: 16px;
+    margin: 0;
   }
 
   .discovery-form-header {
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
   }
 
   .discovery-form-header h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    line-height: 1.3;
   }
 
   .discovery-form {
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
   }
 
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
   }
 
   .call-info {
@@ -665,31 +686,135 @@
 
   .discovery-form-benefits {
     padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .discovery-form-benefits h3 {
+    font-size: 1rem;
+  }
+
+  .discovery-form-benefits ul li {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 
   .success-content {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
   }
 
   .success-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .success-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .success-details {
+    padding: 1rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
+  .discovery-form-overlay {
+    padding: 0.5rem;
+  }
+
+  .discovery-form-container {
+    max-width: 98vw;
+    max-height: 92vh;
+    border-radius: 12px;
+  }
+
   .discovery-form-header {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .discovery-form-header h2 {
+    font-size: 1.1rem;
   }
 
   .discovery-form {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 16px;
+    padding: 0.7rem;
   }
 
   .discovery-form-benefits {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .discovery-form-benefits h3 {
+    font-size: 0.95rem;
+  }
+
+  .discovery-form-benefits ul li {
+    font-size: 0.8rem;
+  }
+
+  .success-content {
     padding: 1rem;
+  }
+
+  .success-icon {
+    font-size: 2rem;
+  }
+
+  .success-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .success-details {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .close-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Landscape mobile devices */
+@media (max-width: 768px) and (orientation: landscape) {
+  .discovery-form-container {
+    max-height: 95vh;
+    max-width: 70vw;
+  }
+
+  .discovery-form-benefits {
+    display: none; /* Hide benefits on landscape mobile to save space */
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .discovery-form-container {
+    max-width: 100vw;
+    border-radius: 8px;
+  }
+
+  .discovery-form-overlay {
+    padding: 0.25rem;
+  }
+
+  .discovery-form-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .discovery-form {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .discovery-form-benefits {
+    padding: 0.5rem 0.75rem;
   }
 }
