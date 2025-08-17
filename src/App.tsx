@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import './components/HeaderStyles.css';
-import LoanApplicationForm from './components/LoanApplicationForm';
+
 import BankLogoSlider from './components/BankLogoSlider';
 import DiscoveryCallForm from './components/DiscoveryCallForm';
 import ContactForm from './components/ContactForm';
@@ -10,7 +10,6 @@ import { Testimonial, FAQ, AppState } from './types';
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
     activeFaq: null,
-    showApplicationForm: false,
     showMobileMenu: false,
     showDiscoveryForm: false,
     showContactForm: false
@@ -23,9 +22,7 @@ const App: React.FC = () => {
     }));
   };
 
-  const closeApplicationForm = (): void => {
-    setState(prev => ({ ...prev, showApplicationForm: false }));
-  };
+
 
   const testimonials: Testimonial[] = [
     {
@@ -397,11 +394,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
-
-      {/* Loan Application Form Modal */}
-      {state.showApplicationForm && (
-        <LoanApplicationForm onClose={closeApplicationForm} />
-      )}
 
       {/* Discovery Call Form Modal */}
       {state.showDiscoveryForm && (
