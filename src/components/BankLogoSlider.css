@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   gap: 5rem;
-  animation: scroll-left 60s linear infinite;
+  animation: scroll-left 30s linear infinite;
   width: max-content;
 }
 
