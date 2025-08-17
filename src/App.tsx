@@ -6,6 +6,7 @@ import BankLogoSlider from './components/BankLogoSlider';
 import DiscoveryCallForm from './components/DiscoveryCallForm';
 
 import { Testimonial, FAQ, AppState } from './types';
+import { getPublishedReviews } from './utils/reviews';
 
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
@@ -23,7 +24,18 @@ const App: React.FC = () => {
 
 
 
-  const testimonials: Testimonial[] = [
+  // Get testimonials from CMS data
+  const cmsReviews = getPublishedReviews();
+  
+  // Convert CMS reviews to testimonial format
+  const cmsTestimonials: Testimonial[] = cmsReviews.map(review => ({
+    name: review.name,
+    text: review.content,
+    stars: review.rating
+  }));
+
+  // Fallback testimonials if no CMS data is available
+  const fallbackTestimonials: Testimonial[] = [
     {
       name: "Sarah Mitchell",
       text: "Ankush was more than a broker, very professional and truthful. He was able to guide me through the loan application process right till the settlement. Deserve my 5 star.",
@@ -55,6 +67,9 @@ const App: React.FC = () => {
       stars: 5
     }
   ];
+
+  // Use CMS testimonials if available, otherwise use fallback
+  const testimonials = cmsTestimonials.length > 0 ? cmsTestimonials : fallbackTestimonials;
 
   const faqs: FAQ[] = [
     {

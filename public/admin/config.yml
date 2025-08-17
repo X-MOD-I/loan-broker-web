@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# This line should *not* be indented
+publish_mode: editorial_workflow
+
+# This line should *not* be indented
+media_folder: "public/images/reviews" # Media files will be stored in the repo under public/images/reviews
+public_folder: "/images/reviews" # The src attribute for uploaded media will begin with /images/reviews
+
+collections:
+  - name: "reviews" # Used in routes, e.g., /admin/collections/blog
+    label: "Customer Reviews" # Used in the UI
+    folder: "src/data/reviews" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Customer Name", name: "name", widget: "string"}
+      - {label: "Rating", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, step: 1, default: 5}
+      - {label: "Review Title", name: "title", widget: "string", required: false}
+      - {label: "Review Content", name: "content", widget: "text"}
+      - {label: "Customer Photo", name: "image", widget: "image", required: false}
+      - {label: "Location", name: "location", widget: "string", required: false}
+      - {label: "Loan Type", name: "loanType", widget: "select", options: ["Home Loan", "Investment Loan", "Refinancing", "Construction Loan", "Personal Loan", "Business Loan", "Other"], required: false}
+      - {label: "Date", name: "date", widget: "datetime", default: "{{now}}"}
+      - {label: "Featured Review", name: "featured", widget: "boolean", default: false}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
