@@ -1,0 +1,4 @@
+# Netlify redirects for CMS admin and SPA routing
+/admin              /admin/index.html   200
+/admin/*            /admin/index.html   200
+/*                  /index.html         200

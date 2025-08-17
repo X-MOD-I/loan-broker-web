@@ -5,17 +5,23 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Enable Netlify Identity and Git Gateway
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# Redirects for SPA routing and CMS admin
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
 
-# Redirects for admin access
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
-# Enable Git Gateway for CMS
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security
 [[headers]]
   for = "/admin/*"
   [headers.values]
