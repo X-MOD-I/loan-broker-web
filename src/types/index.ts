@@ -29,7 +29,6 @@ export interface AppState {
   activeFaq: number | null;
   showMobileMenu: boolean;
   showDiscoveryForm: boolean;
-  showContactForm: boolean;
 }
 
 // Contact Information Types

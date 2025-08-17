@@ -4,15 +4,14 @@ import './components/HeaderStyles.css';
 
 import BankLogoSlider from './components/BankLogoSlider';
 import DiscoveryCallForm from './components/DiscoveryCallForm';
-import ContactForm from './components/ContactForm';
+
 import { Testimonial, FAQ, AppState } from './types';
 
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
     activeFaq: null,
     showMobileMenu: false,
-    showDiscoveryForm: false,
-    showContactForm: false
+    showDiscoveryForm: false
   });
 
   const toggleFaq = (index: number): void => {
@@ -115,13 +114,6 @@ const App: React.FC = () => {
             >
               Free 30-Min Discovery Call
             </button>
-            <button 
-              onClick={() => setState(prev => ({...prev, showContactForm: true}))}
-              className="header-cta-btn request-call"
-              style={{ marginLeft: '0.75rem' }}
-            >
-              Request a Call
-            </button>
           </div>
 
           <button 
@@ -219,7 +211,7 @@ const App: React.FC = () => {
           </div>
 
           <div style={{textAlign: 'center', marginTop: '2rem'}}>
-            <a href="#contact" className="cta-button" onClick={(e) => { e.preventDefault(); setState(prev => ({...prev, showContactForm: true})); }}>Explore All Options</a>
+            <a href="#contact" className="cta-button" onClick={(e) => { e.preventDefault(); setState(prev => ({...prev, showDiscoveryForm: true})); }}>Explore All Options</a>
           </div>
         </div>
       </section>
@@ -274,7 +266,7 @@ const App: React.FC = () => {
             <p>
               Our commitment to providing competitive rates, flexible terms, and expert financial advice sets us apart in the industry. Whether you're looking to manage debt, plan for the future, or secure financing for major purchases, Chop Loans is your trusted partner in financial success.
             </p>
-            <a href="#contact" className="cta-button" onClick={(e) => { e.preventDefault(); setState(prev => ({...prev, showContactForm: true})); }}>Learn More About Us</a>
+            <a href="#contact" className="cta-button" onClick={(e) => { e.preventDefault(); setState(prev => ({...prev, showDiscoveryForm: true})); }}>Learn More About Us</a>
           </div>
 
           <div className="founder-info">
@@ -399,10 +391,7 @@ const App: React.FC = () => {
       {state.showDiscoveryForm && (
         <DiscoveryCallForm onClose={() => setState(prev => ({ ...prev, showDiscoveryForm: false }))} />
       )}
-      {/* Contact Form Modal */}
-      {state.showContactForm && (
-        <ContactForm onClose={() => setState(prev => ({ ...prev, showContactForm: false }))} />
-      )}
+
     </div>
   );
 };

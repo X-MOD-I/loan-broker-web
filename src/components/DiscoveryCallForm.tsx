@@ -24,6 +24,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -35,9 +36,10 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
 
     if (!formData.name || !formData.phone || !formData.email) {
-      alert('Please fill in Full Name, Phone Number, and Email Address.');
+      setSubmitError('Please fill in all required fields (Full Name, Phone Number, and Email Address).');
       return;
     }
 
@@ -62,15 +64,15 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
       if (!response.ok) throw new Error('Submission failed');
 
       setIsSubmitted(true);
-      setIsSubmitting(false);
 
-      // Auto close after 3 seconds
+      // Auto close after 4 seconds for discovery call
       setTimeout(() => {
         onClose();
-      }, 3000);
+      }, 4000);
     } catch (error) {
       console.error('Error submitting discovery call form:', error);
-      alert('There was an error booking your discovery call. Please try again.');
+      setSubmitError('There was an error booking your discovery call. Please try again or contact us directly.');
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -85,15 +87,26 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
     return (
       <div className="discovery-form-overlay" onClick={handleOverlayClick}>
         <div className="discovery-form-container success">
-          <div className="success-content">
-            <div className="success-icon">✅</div>
-            <h2>Discovery Call Booked!</h2>
-            <p>Thank you for booking your free 30-minute discovery call. We'll contact you within 24 hours to confirm your appointment.</p>
+          <div className="success-message">
+            <div className="success-icon">🎉</div>
+            <h3>Discovery Call Booked Successfully!</h3>
+            <p>Thank you for booking your free 30-minute discovery call! Ankush will contact you within 24 hours to confirm your appointment.</p>
             <div className="success-details">
               <p><strong>Name:</strong> {formData.name}</p>
               <p><strong>Phone:</strong> {formData.phone}</p>
+              <p><strong>Email:</strong> {formData.email}</p>
               <p><strong>Preferred Time:</strong> {formData.preferredTime}</p>
+              {formData.subject && <p><strong>Topic:</strong> {formData.subject}</p>}
             </div>
+            <div className="next-steps">
+              <h4>What happens next:</h4>
+              <ul>
+                <li>✅ You'll receive a confirmation email shortly</li>
+                <li>📞 Ankush will call you to schedule the exact time</li>
+                <li>💼 Prepare any questions about your financial goals</li>
+              </ul>
+            </div>
+            <p className="auto-close-note">This window will close automatically in a few seconds...</p>
           </div>
         </div>
       </div>
@@ -110,6 +123,13 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
         </div>
 
         <form onSubmit={handleSubmit} className="discovery-form">
+          {submitError && (
+            <div className="error-message">
+              <div className="error-icon">⚠️</div>
+              <p>{submitError}</p>
+            </div>
+          )}
+          
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="name">Full Name <span className="required">*</span></label>
@@ -120,6 +140,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
+                disabled={isSubmitting}
                 placeholder="Enter your full name"
               />
             </div>
@@ -132,6 +153,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
+                disabled={isSubmitting}
                 placeholder="e.g., 0400 000 000"
               />
             </div>
@@ -147,6 +169,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
+                disabled={isSubmitting}
                 placeholder="Enter your email address"
               />
             </div>
@@ -157,6 +180,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
                 name="preferredTime"
                 value={formData.preferredTime}
                 onChange={handleInputChange}
+                disabled={isSubmitting}
               >
                 <option value="9am - 12pm">9am - 12pm</option>
                 <option value="12pm - 3pm">12pm - 3pm</option>
@@ -173,6 +197,7 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
               name="subject"
               value={formData.subject}
               onChange={handleInputChange}
+              disabled={isSubmitting}
               placeholder="e.g., First home loan, refinancing, investment property..."
               rows={3}
             />
@@ -181,10 +206,17 @@ const DiscoveryCallForm: React.FC<DiscoveryCallFormProps> = ({ onClose }) => {
           <div className="form-footer">
             <button 
               type="submit" 
-              className="submit-btn"
+              className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Booking...' : 'Book Free Discovery Call'}
+              {isSubmitting ? (
+                <>
+                  <div className="loading-spinner"></div>
+                  <span>Booking...</span>
+                </>
+              ) : (
+                'Book Free Discovery Call'
+              )}
             </button>
           </div>
         </form>
