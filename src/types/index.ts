@@ -5,6 +5,20 @@ export interface Testimonial {
   stars: number;
 }
 
+export interface ReviewData {
+  id: string;
+  name: string;
+  rating: number;
+  title: string;
+  content: string;
+  location: string;
+  loanType: string;
+  date: string;
+  featured: boolean;
+  published: boolean;
+  image?: string | null;
+}
+
 // FAQ Types
 export interface FAQ {
   question: string;

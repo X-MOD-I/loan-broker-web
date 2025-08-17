@@ -5,6 +5,18 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Auto-rebuild when CMS content changes
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
 # Redirects for SPA routing and CMS admin
 [[redirects]]
   from = "/admin"

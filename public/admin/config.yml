@@ -3,14 +3,11 @@ backend:
   branch: main # Branch to update (optional; defaults to master)
 
 # This line should *not* be indented
-publish_mode: editorial_workflow
-
-# This line should *not* be indented
 media_folder: "public/images/reviews" # Media files will be stored in the repo under public/images/reviews
 public_folder: "/images/reviews" # The src attribute for uploaded media will begin with /images/reviews
 
 collections:
-  - name: "reviews" # Used in routes, e.g., /admin/collections/blog
+  - name: "reviews" # Used in routes, e.g., /admin/collections/reviews
     label: "Customer Reviews" # Used in the UI
     folder: "src/data/reviews" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection

@@ -5,7 +5,7 @@ import './components/HeaderStyles.css';
 import BankLogoSlider from './components/BankLogoSlider';
 import DiscoveryCallForm from './components/DiscoveryCallForm';
 
-import { Testimonial, FAQ, AppState } from './types';
+import { Testimonial, FAQ, AppState, ReviewData } from './types';
 import { getPublishedReviews } from './utils/reviews';
 
 const App: React.FC = () => {
@@ -25,10 +25,10 @@ const App: React.FC = () => {
 
 
   // Get testimonials from CMS data
-  const cmsReviews = getPublishedReviews();
+  const cmsReviews: ReviewData[] = getPublishedReviews();
   
   // Convert CMS reviews to testimonial format
-  const cmsTestimonials: Testimonial[] = cmsReviews.map(review => ({
+  const cmsTestimonials: Testimonial[] = cmsReviews.map((review: ReviewData) => ({
     name: review.name,
     text: review.content,
     stars: review.rating
