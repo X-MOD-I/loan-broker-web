@@ -6,13 +6,14 @@ import BankLogoSlider from './components/BankLogoSlider';
 import DiscoveryCallForm from './components/DiscoveryCallForm';
 
 import { Testimonial, FAQ, AppState, ReviewData } from './types';
-import { getPublishedReviews } from './utils/reviews';
+import { getLatestReviews } from './utils/reviews';
 
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
     activeFaq: null,
     showMobileMenu: false,
-    showDiscoveryForm: false
+    showDiscoveryForm: false,
+    currentTestimonialIndex: 0
   });
 
   const toggleFaq = (index: number): void => {
@@ -22,10 +23,8 @@ const App: React.FC = () => {
     }));
   };
 
-
-
-  // Get testimonials from CMS data
-  const cmsReviews: ReviewData[] = getPublishedReviews();
+  // Get testimonials from CMS data - latest 8 reviews
+  const cmsReviews: ReviewData[] = getLatestReviews(8);
   
   // Convert CMS reviews to testimonial format
   const cmsTestimonials: Testimonial[] = cmsReviews.map((review: ReviewData) => ({
@@ -70,6 +69,28 @@ const App: React.FC = () => {
 
   // Use CMS testimonials if available, otherwise use fallback
   const testimonials = cmsTestimonials.length > 0 ? cmsTestimonials : fallbackTestimonials;
+
+  const nextTestimonials = (): void => {
+    setState(prev => {
+      const maxIndex = Math.max(0, testimonials.length - 3);
+      const nextIndex = prev.currentTestimonialIndex + 3;
+      return {
+        ...prev,
+        currentTestimonialIndex: nextIndex > maxIndex ? 0 : nextIndex
+      };
+    });
+  };
+
+  const prevTestimonials = (): void => {
+    setState(prev => {
+      const maxIndex = Math.max(0, testimonials.length - 3);
+      const prevIndex = prev.currentTestimonialIndex - 3;
+      return {
+        ...prev,
+        currentTestimonialIndex: prevIndex < 0 ? maxIndex : prevIndex
+      };
+    });
+  };
 
   const faqs: FAQ[] = [
     {
@@ -335,20 +356,59 @@ const App: React.FC = () => {
         <div className="testimonials-container">
           <h2 className="section-title">Words of Appreciation from Our Valued Customers!!</h2>
           
-          <div className="testimonials-grid">
-            {testimonials.map((testimonial: Testimonial, index: number) => (
-              <div key={index} className="testimonial-card">
-                <div className="stars">
-                  {renderStars(testimonial.stars)}
-                </div>
-                <p>"{testimonial.text}"</p>
-                <div className="testimonial-author">- {testimonial.name}</div>
-                <span className="testimonial-logo-badge">
-                  <img src="/images/logos/logo.png" alt="Chop Loans" className="testimonial-logo-img" />
-                </span>
+          <div className="testimonials-slider-wrapper">
+            {testimonials.length > 3 && (
+              <button 
+                className="testimonial-nav-btn prev-btn" 
+                onClick={nextTestimonials}
+                aria-label="Previous testimonials"
+              >
+                &#8249;
+              </button>
+            )}
+            
+            <div className="testimonials-slider">
+              <div 
+                className="testimonials-track"
+                style={{
+                  transform: `translateX(-${state.currentTestimonialIndex * (100 / 3)}%)`
+                }}
+              >
+                {testimonials.map((testimonial: Testimonial, index: number) => (
+                  <div key={index} className="testimonial-card">
+                    <div className="stars">
+                      {renderStars(testimonial.stars)}
+                    </div>
+                    <p>"{testimonial.text}"</p>
+                    <div className="testimonial-author">— {testimonial.name}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            
+            {testimonials.length > 3 && (
+              <button 
+                className="testimonial-nav-btn next-btn" 
+                onClick={prevTestimonials}
+                aria-label="Next testimonials"
+              >
+                &#8250;
+              </button>
+            )}
           </div>
+          
+          {testimonials.length > 3 && (
+            <div className="testimonials-dots">
+              {Array.from({ length: Math.ceil(testimonials.length / 3) }, (_, i) => (
+                <button
+                  key={i}
+                  className={`testimonial-dot ${Math.floor(state.currentTestimonialIndex / 3) === i ? 'active' : ''}`}
+                  onClick={() => setState(prev => ({ ...prev, currentTestimonialIndex: i * 3 }))}
+                  aria-label={`Go to testimonials ${i * 3 + 1}-${Math.min((i + 1) * 3, testimonials.length)}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

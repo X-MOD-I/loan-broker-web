@@ -1,6 +1,6 @@
 // Auto-generated from markdown files - DO NOT EDIT MANUALLY
 // This file is automatically updated when you add reviews via CMS
-// Last updated: 2025-08-17T10:56:25.595Z
+// Last updated: 2025-08-20T04:06:45.250Z
 
 export interface ReviewData {
   id: string;
@@ -17,6 +17,19 @@ export interface ReviewData {
 }
 
 export const reviewsData: ReviewData[] = [
+  {
+    "id": "2025-08-17-wow",
+    "name": "Garima Wahi",
+    "rating": 5,
+    "title": "Wow",
+    "content": "Amazing Service!",
+    "location": "",
+    "loanType": "Refinancing",
+    "date": "2025-08-17T10:58:00.000Z",
+    "featured": true,
+    "published": true,
+    "image": null
+  },
   {
     "id": "2024-03-10-maria-refinancing",
     "name": "Maria K.",

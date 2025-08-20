@@ -43,6 +43,7 @@ export interface AppState {
   activeFaq: number | null;
   showMobileMenu: boolean;
   showDiscoveryForm: boolean;
+  currentTestimonialIndex: number;
 }
 
 // Contact Information Types

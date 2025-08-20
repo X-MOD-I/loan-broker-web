@@ -774,6 +774,27 @@
   z-index: 2;
 }
 
+/* Testimonials Slider Styles */
+.testimonials-slider-wrapper {
+  position: relative;
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.testimonials-slider {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.testimonials-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 2.5rem;
+}
+
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -785,6 +806,8 @@
   background: #ffffff;
   padding: 2rem;
   border-radius: 14px;
+  flex: 0 0 calc(33.333% - 1.67rem);
+  min-width: 350px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -807,34 +830,64 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* Subtle Chop Loans logo watermark element at bottom-right */
-.testimonial-logo-badge {
-  position: absolute;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  padding: 6px;
-  border-radius: 9999px;
-  background: #0f172a;
-  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
-  pointer-events: none;
+/* Navigation Buttons */
+.testimonial-nav-btn {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #6366f1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
-.testimonial-logo-img {
-  width: 70px;
-  height: 70px;
-  display: block;
-  filter: brightness(0) invert(1);
+.testimonial-nav-btn:hover {
+  background: #6366f1;
+  color: #ffffff;
+  border-color: #6366f1;
+  transform: scale(1.05);
 }
 
-@media (max-width: 480px) {
-  .testimonial-logo-badge {
-    padding: 5px;
-  }
-  .testimonial-logo-img {
-    width: 58px;
-    height: 58px;
-  }
+.testimonial-nav-btn:active {
+  transform: scale(0.95);
 }
+
+/* Dots Navigation */
+.testimonials-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.testimonial-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #d1d5db;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testimonial-dot.active {
+  background: #6366f1;
+  transform: scale(1.2);
+}
+
+.testimonial-dot:hover {
+  background: #9ca3af;
+}
+
+
 
 .testimonial-card p {
   font-style: normal;
@@ -851,9 +904,12 @@
 }
 
 .testimonial-author {
-  font-weight: 700;
-  color: #0f172a;
-  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  font-style: italic;
+  text-align: right;
 }
 
 .stars {
@@ -1116,6 +1172,37 @@
   }
 }
 
+@media (max-width: 768px) {
+  .testimonials-slider-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .testimonial-card {
+    flex: 0 0 100%;
+    min-width: auto;
+  }
+  
+  .testimonials-track {
+    gap: 1.5rem;
+  }
+  
+  .testimonial-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  .prev-btn {
+    left: -25px;
+  }
+  
+  .next-btn {
+    right: -25px;
+  }
+}
+
 @media (max-width: 480px) {
   .logo {
     font-size: 1.6rem;
@@ -1131,6 +1218,24 @@
   
   .section-title {
     font-size: 2rem;
+  }
+  
+  .testimonials-slider-wrapper {
+    margin-top: 2rem;
+  }
+  
+  .testimonial-nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .prev-btn {
+    left: -20px;
+  }
+  
+  .next-btn {
+    right: -20px;
   }
   
   .about-content h2 {
