@@ -1097,6 +1097,77 @@
   font-weight: 500;
 }
 
+/* Developer Credit Button */
+.developer-credit-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 
+    0 8px 32px rgba(102, 126, 234, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.developer-credit-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 12px 40px rgba(102, 126, 234, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+}
+
+.developer-credit-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.developer-credit-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.developer-credit-icon {
+  font-size: 1.1em;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px rgba(102, 126, 234, 0.4),
+      0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 12px 40px rgba(102, 126, 234, 0.6),
+      0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .mobile-menu-toggle {
@@ -1236,6 +1307,22 @@
   
   .next-btn {
     right: -20px;
+  }
+  
+  .developer-credit-btn {
+    bottom: 15px;
+    right: 15px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .developer-credit-text {
+    display: none;
+  }
+  
+  .developer-credit-btn::after {
+    content: "By Dipanshu";
+    font-size: 0.8rem;
   }
   
   .about-content h2 {

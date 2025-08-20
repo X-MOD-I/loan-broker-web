@@ -481,8 +481,8 @@ const App: React.FC = () => {
             <div className="footer-section">
               <h3>Contact Info</h3>
               <ul>
-                <li><a href="tel:+61400000000">Phone: +61 400 000 000</a></li>
-                <li><a href="mailto:ankush@choploans.com.au">Email: ankush@choploans.com.au</a></li>
+                <li><a href="tel:+61489210002">Phone: 0489 210 002</a></li>
+                <li><a href="mailto:choploansaus@gmail.com">Email: choploansaus@gmail.com</a></li>
                 <li>Melbourne, Victoria</li>
                 <li><a href="https://choploans.com.au">www.choploans.com.au</a></li>
               </ul>
@@ -499,6 +499,18 @@ const App: React.FC = () => {
       {state.showDiscoveryForm && (
         <DiscoveryCallForm onClose={() => setState(prev => ({ ...prev, showDiscoveryForm: false }))} />
       )}
+
+      {/* Developer Credit Button */}
+      <a 
+        href="https://www.linkedin.com/in/dipanshu-modi/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="developer-credit-btn"
+        aria-label="Connect with developer Dipanshu Modi on LinkedIn"
+      >
+        <span className="developer-credit-text">Powered by Dipanshu Modi</span>
+        <span className="developer-credit-icon">✨</span>
+      </a>
 
     </div>
   );
