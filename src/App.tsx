@@ -490,7 +490,12 @@ const App: React.FC = () => {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; 2024 Chop Loans. All rights reserved. | ABN: 12 345 678 901</p>
+            <div className="regulatory-info">
+              <p><strong>CHOPLOANS ABN (Ankush Chopra): 82 320 188 284</strong></p>
+              <p>Credit Representative Number 567193 is an authorised representative under Finsure Finance & Insurance Ltd, Australian Credit Licensee, Licence Number 384704.</p>
+              <p>Your full financial situation will need to be reviewed prior to acceptance of any offer or product.</p>
+            </div>
+            <p className="copyright">&copy; 2024 All Rights Reserved © Ankush Chopra ABN 82 320 188 284</p>
           </div>
         </div>
       </footer>
