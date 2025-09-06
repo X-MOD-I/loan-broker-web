@@ -211,14 +211,20 @@
 
 .mobile-menu-toggle {
   display: none;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   font-size: 1.5rem;
   cursor: pointer;
   color: #ffffff;
-  padding: 0.5rem;
+  padding: 0.75rem;
   transition: all 0.3s ease;
-  border-radius: 6px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 50px;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobile-menu-toggle:hover {
@@ -247,6 +253,7 @@
   opacity: 0;
   animation: slideDown 0.3s ease-out forwards;
   backdrop-filter: blur(10px);
+  z-index: 1001;
 }
 
 @keyframes slideDown {
@@ -390,6 +397,7 @@
   
   .nav-container {
     padding: 1rem 1.5rem;
+    height: 100px;
   }
   
   .logo-image {
@@ -398,6 +406,10 @@
 
   .header-phone {
     display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex !important;
   }
 }
 

@@ -67,13 +67,16 @@ const App: React.FC = () => {
     }
   ];
 
-  // Use CMS testimonials if available, otherwise use fallback
-  const testimonials = cmsTestimonials.length > 0 ? cmsTestimonials : fallbackTestimonials;
+  // Combine CMS and fallback testimonials to ensure we have enough for the slider
+  const allTestimonials = [...cmsTestimonials, ...fallbackTestimonials];
+  const testimonials = allTestimonials.slice(0, 8); // Take up to 8 testimonials
 
   const nextTestimonials = (): void => {
     setState(prev => {
-      const maxIndex = Math.max(0, testimonials.length - 3);
-      const nextIndex = prev.currentTestimonialIndex + 3;
+      // On mobile, show 1 testimonial at a time, on desktop show 3
+      const itemsPerView = window.innerWidth <= 768 ? 1 : 3;
+      const maxIndex = Math.max(0, testimonials.length - itemsPerView);
+      const nextIndex = prev.currentTestimonialIndex + itemsPerView;
       return {
         ...prev,
         currentTestimonialIndex: nextIndex > maxIndex ? 0 : nextIndex
@@ -83,8 +86,10 @@ const App: React.FC = () => {
 
   const prevTestimonials = (): void => {
     setState(prev => {
-      const maxIndex = Math.max(0, testimonials.length - 3);
-      const prevIndex = prev.currentTestimonialIndex - 3;
+      // On mobile, show 1 testimonial at a time, on desktop show 3
+      const itemsPerView = window.innerWidth <= 768 ? 1 : 3;
+      const maxIndex = Math.max(0, testimonials.length - itemsPerView);
+      const prevIndex = prev.currentTestimonialIndex - itemsPerView;
       return {
         ...prev,
         currentTestimonialIndex: prevIndex < 0 ? maxIndex : prevIndex
@@ -365,10 +370,10 @@ const App: React.FC = () => {
           <h2 className="section-title">Words of Appreciation from Our Valued Customers!!</h2>
           
           <div className="testimonials-slider-wrapper">
-            {testimonials.length > 3 && (
+            {testimonials.length > (window.innerWidth <= 768 ? 1 : 3) && (
               <button 
                 className="testimonial-nav-btn prev-btn" 
-                onClick={nextTestimonials}
+                onClick={prevTestimonials}
                 aria-label="Previous testimonials"
               >
                 &#8249;
@@ -379,7 +384,7 @@ const App: React.FC = () => {
               <div 
                 className="testimonials-track"
                 style={{
-                  transform: `translateX(-${state.currentTestimonialIndex * (100 / 3)}%)`
+                  transform: `translateX(-${state.currentTestimonialIndex * (window.innerWidth <= 768 ? 100 : 100 / 3)}%)`
                 }}
               >
                 {testimonials.map((testimonial: Testimonial, index: number) => (
@@ -394,10 +399,10 @@ const App: React.FC = () => {
               </div>
             </div>
             
-            {testimonials.length > 3 && (
+            {testimonials.length > (window.innerWidth <= 768 ? 1 : 3) && (
               <button 
                 className="testimonial-nav-btn next-btn" 
-                onClick={prevTestimonials}
+                onClick={nextTestimonials}
                 aria-label="Next testimonials"
               >
                 &#8250;
@@ -405,14 +410,14 @@ const App: React.FC = () => {
             )}
           </div>
           
-          {testimonials.length > 3 && (
+          {testimonials.length > (window.innerWidth <= 768 ? 1 : 3) && (
             <div className="testimonials-dots">
-              {Array.from({ length: Math.ceil(testimonials.length / 3) }, (_, i) => (
+              {Array.from({ length: Math.ceil(testimonials.length / (window.innerWidth <= 768 ? 1 : 3)) }, (_, i) => (
                 <button
                   key={i}
-                  className={`testimonial-dot ${Math.floor(state.currentTestimonialIndex / 3) === i ? 'active' : ''}`}
-                  onClick={() => setState(prev => ({ ...prev, currentTestimonialIndex: i * 3 }))}
-                  aria-label={`Go to testimonials ${i * 3 + 1}-${Math.min((i + 1) * 3, testimonials.length)}`}
+                  className={`testimonial-dot ${Math.floor(state.currentTestimonialIndex / (window.innerWidth <= 768 ? 1 : 3)) === i ? 'active' : ''}`}
+                  onClick={() => setState(prev => ({ ...prev, currentTestimonialIndex: i * (window.innerWidth <= 768 ? 1 : 3) }))}
+                  aria-label={`Go to testimonials ${i * (window.innerWidth <= 768 ? 1 : 3) + 1}-${Math.min((i + 1) * (window.innerWidth <= 768 ? 1 : 3), testimonials.length)}`}
                 />
               ))}
             </div>
