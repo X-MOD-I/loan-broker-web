@@ -524,9 +524,9 @@ const App: React.FC = () => {
         target="_blank" 
         rel="noopener noreferrer"
         className="developer-credit-btn"
-        aria-label="Connect with developer Dipanshu Modi on LinkedIn"
+        aria-label="Connect with developer Modi on LinkedIn"
       >
-        <span className="developer-credit-text">Powered by Dipanshu Modi</span>
+        <span className="developer-credit-text">Powered by Modi</span>
         <span className="developer-credit-icon">✨</span>
       </a>
 

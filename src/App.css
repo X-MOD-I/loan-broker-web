@@ -278,6 +278,13 @@
   will-change: transform;
 }
 
+/* Override text alignment for service items to be left-aligned */
+.service-card .service-items {
+  text-align: left;
+  align-items: flex-start;
+}
+
+/* Add decorative background patterns to service cards */
 .service-card::before {
   content: '';
   position: absolute;
@@ -286,21 +293,34 @@
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.4) 0%, 
-      rgba(255, 255, 255, 0.1) 30%,
-      rgba(255, 255, 255, 0.05) 50%, 
-      rgba(255, 255, 255, 0.2) 100%),
-    linear-gradient(-45deg, 
-      transparent 40%, 
-      rgba(255, 255, 255, 0.1) 50%, 
-      transparent 60%);
-  border-radius: 24px;
-  opacity: 1;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(139, 92, 246, 0.03) 0%, transparent 40%),
+    linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.02) 50%, transparent 70%);
   pointer-events: none;
-  animation: card-shimmer 6s ease-in-out infinite;
+  z-index: 1;
 }
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 10% 90%, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px, 80px 80px, 100px 100px, 70px 70px;
+  animation: float-pattern 20s linear infinite;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Remove the old shimmer effect and replace with new design */
 
 .service-card::after {
   content: '';
@@ -353,6 +373,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .service-icon {
@@ -436,6 +458,7 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   font-size: 0.85rem;
+  z-index: 2;
 }
 
 .service-btn::before {
@@ -469,6 +492,10 @@
   margin: 1.5rem 0;
   flex: 1;
   text-align: left;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .service-item {
@@ -480,6 +507,8 @@
   position: relative;
   padding-left: 1.5rem;
   transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
 }
 
 /* Option 1: Gradient Arrow (uncomment to use)
@@ -503,10 +532,12 @@
   content: '✓';
   position: absolute;
   left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   color: #10b981;
   font-weight: bold;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1;
   background: rgba(16, 185, 129, 0.1);
   border-radius: 50%;
   width: 18px;
@@ -514,7 +545,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-1px);
 }
 
 /* Option 3: Modern Square (uncomment to use)
@@ -580,6 +610,64 @@
 .service-item:hover {
   color: #1e40af;
   transform: translateX(3px);
+}
+
+/* Unique background designs for each service card */
+.service-card:nth-child(1)::before {
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, transparent 40%, rgba(59, 130, 246, 0.03) 60%, transparent 80%);
+}
+
+.service-card:nth-child(2)::before {
+  background: 
+    radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 30% 70%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 30%, rgba(139, 92, 246, 0.03) 50%, transparent 70%);
+}
+
+.service-card:nth-child(3)::before {
+  background: 
+    radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+    linear-gradient(225deg, transparent 40%, rgba(16, 185, 129, 0.03) 60%, transparent 80%);
+}
+
+.service-card:nth-child(4)::before {
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    linear-gradient(315deg, transparent 30%, rgba(6, 182, 212, 0.03) 50%, transparent 70%);
+}
+
+/* Add subtle geometric patterns */
+.service-card:nth-child(1)::after {
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px, 60px 60px;
+}
+
+.service-card:nth-child(2)::after {
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 70% 70%, rgba(6, 182, 212, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px, 70px 70px;
+}
+
+.service-card:nth-child(3)::after {
+  background: 
+    radial-gradient(circle at 35% 35%, rgba(16, 185, 129, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 65% 65%, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+  background-size: 45px 45px, 65px 65px;
+}
+
+.service-card:nth-child(4)::after {
+  background: 
+    radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 60% 60%, rgba(139, 92, 246, 0.08) 1px, transparent 1px);
+  background-size: 55px 55px, 75px 75px;
 }
 
 /* Process Section */
@@ -1348,6 +1436,25 @@
   .service-card, .testimonial-card, .founder-info {
     padding: 2rem;
   }
+  
+  /* Center align bullet points on mobile */
+  .service-card .service-items {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .service-card .service-item {
+    text-align: center;
+    padding-left: 0;
+    justify-content: center;
+  }
+  
+  .service-card .service-item::before {
+    position: static;
+    transform: none;
+    margin-right: 0.5rem;
+    display: inline-flex;
+  }
 
   .process-step {
     padding: 2rem 1.5rem;
@@ -1481,7 +1588,7 @@
   }
   
   .developer-credit-btn::after {
-    content: "By Dipanshu";
+    content: "By Modi";
     font-size: 0.8rem;
   }
   
@@ -1491,6 +1598,25 @@
 
   .service-card, .testimonial-card, .founder-info {
     padding: 1.5rem;
+  }
+  
+  /* Center align bullet points on small mobile screens too */
+  .service-card .service-items {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .service-card .service-item {
+    text-align: center;
+    padding-left: 0;
+    justify-content: center;
+  }
+  
+  .service-card .service-item::before {
+    position: static;
+    transform: none;
+    margin-right: 0.5rem;
+    display: inline-flex;
   }
 
   .service-card h3 {
