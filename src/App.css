@@ -918,7 +918,12 @@
 /* FAQ Section */
 .faq {
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  background: 
+    linear-gradient(135deg, rgba(248, 250, 252, 0.92) 0%, rgba(241, 245, 249, 0.92) 100%),
+    url('/images/photos/talking and asking questions.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   position: relative;
 }
 
@@ -929,8 +934,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  background: 
+    radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    rgba(248, 250, 252, 0.15);
   pointer-events: none;
+  z-index: 1;
 }
 
 .faq-container {
