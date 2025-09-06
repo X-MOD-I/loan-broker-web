@@ -58,6 +58,24 @@ export interface ContactInfo {
 // Navigation Types
 export type NavSection = 'services' | 'about' | 'process' | 'testimonials' | 'contact';
 
+// Lender Types
+export interface Lender {
+  id: string;
+  name: string;
+  contactInfo: string;
+  category: 'major-bank' | 'regional-bank' | 'credit-union' | 'non-bank' | 'specialist' | 'commercial' | 'asset-finance' | 'personal-finance' | 'other';
+  logoPath?: string;
+  hasLogo: boolean;
+  services: string[];
+  description?: string;
+}
+
+export interface BankLogo {
+  name: string;
+  src: string;
+  alt: string;
+}
+
 // Form Event Types
 export type FormInputChangeEvent = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
 export type FormSubmitEvent = React.FormEvent<HTMLFormElement>;

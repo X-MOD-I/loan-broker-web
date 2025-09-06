@@ -1,74 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BankLogoSlider.css';
+import { lendersWithLogos, allLenders } from '../data/simpleLenders';
+import { BankLogo } from '../types';
 
 const BankLogoSlider: React.FC = () => {
-  const bankLogos = [
-    {
-      name: 'Commonwealth Bank',
-      src: '/images/logos/commbank.png',
-      alt: 'Commonwealth Bank of Australia'
-    },
-    {
-      name: 'NAB',
-      src: '/images/logos/nab.png',
-      alt: 'National Australia Bank'
-    },
-    {
-      name: 'ANZ',
-      src: '/images/logos/anz.png',
-      alt: 'Australia and New Zealand Banking Group'
-    },
-    {
-      name: 'Westpac',
-      src: '/images/logos/westpac.png',
-      alt: 'Westpac Banking Corporation'
-    },
-    {
-      name: 'ING Bank',
-      src: '/images/logos/ing-bank.png',
-      alt: 'ING Bank Australia'
-    },
-    {
-      name: 'Macquarie Bank',
-      src: '/images/logos/macquarie-bank.png',
-      alt: 'Macquarie Bank'
-    },
-    {
-      name: 'ME Bank',
-      src: '/images/logos/me-bank.png',
-      alt: 'ME Bank'
-    },
-    {
-      name: 'Bankwest',
-      src: '/images/logos/bankwest.png',
-      alt: 'Bankwest'
-    },
-    {
-      name: 'Bank of Melbourne',
-      src: '/images/logos/bank-of-melbourne.png',
-      alt: 'Bank of Melbourne'
-    },
-    {
-      name: 'Virgin Money',
-      src: '/images/logos/virgin-money.png',
-      alt: 'Virgin Money Australia'
-    },
-    {
-      name: 'Suncorp',
-      src: '/images/logos/suncope.png',
-      alt: 'Suncorp Bank'
-    },
-    {
-      name: 'Pepper Money',
-      src: '/images/logos/pepper-money.png',
-      alt: 'Pepper Money'
-    },
-    {
-      name: 'Connective',
-      src: '/images/logos/connective-home-loan.png',
-      alt: 'Connective Home Loans'
-    }
-  ];
+  const [showFullList, setShowFullList] = useState(false);
+  
+  // Convert lenders with logos to BankLogo format for the slider
+  const bankLogos: BankLogo[] = lendersWithLogos.map(lender => ({
+    name: lender.name,
+    src: lender.logoPath || '',
+    alt: lender.name
+  }));
+
+  // Get lenders without logos for the collapsible list
+  const lendersWithoutLogos = allLenders.filter(lender => !lender.hasLogo);
 
   return (
     <div className="logo-slide-section">
@@ -136,6 +82,34 @@ const BankLogoSlider: React.FC = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Arrow down to expand full lender list */}
+              <div className="expand-lenders-section">
+                <button 
+                  className="expand-lenders-btn"
+                  onClick={() => setShowFullList(!showFullList)}
+                  aria-expanded={showFullList}
+                >
+                  <span>View All {allLenders.length} Lenders</span>
+                  <span className={`arrow ${showFullList ? 'up' : 'down'}`}>
+                    {showFullList ? '↑' : '↓'}
+                  </span>
+                </button>
+              </div>
+
+              {/* Clean modern lender list */}
+              {showFullList && (
+                <div className="modern-lender-list">
+                  <h3>All Our Lenders ({allLenders.length})</h3>
+                  <div className="lender-grid-modern">
+                    {allLenders.map((lender) => (
+                      <div key={lender.id} className="lender-item-modern">
+                        {lender.name}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
