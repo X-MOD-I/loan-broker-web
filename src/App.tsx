@@ -205,6 +205,10 @@ const App: React.FC = () => {
         <div className="hero-container">
           <h1>Chop Chop Loans – Fast, Fair & Always There</h1>
           <p>Melbourne's Top Brokerage - Tailored Solutions for Your Financial Journey with Ankush Chopra!</p>
+          <div className="free-service-badge">
+            <span className="free-icon">✓</span>
+            <span className="free-text">100% Free Service (No hidden fees)</span>
+          </div>
           <div className="hero-cta-buttons">
             <button 
               onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))} 
