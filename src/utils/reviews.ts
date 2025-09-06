@@ -1,6 +1,6 @@
 // Auto-generated from markdown files - DO NOT EDIT MANUALLY
 // This file is automatically updated when you add reviews via CMS
-// Last updated: 2025-09-06T06:48:16.599Z
+// Last updated: 2025-09-06T06:50:54.815Z
 
 export interface ReviewData {
   id: string;

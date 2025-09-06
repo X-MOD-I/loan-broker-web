@@ -13,8 +13,6 @@ const BankLogoSlider: React.FC = () => {
     alt: lender.name
   }));
 
-  // Get lenders without logos for the collapsible list
-  const lendersWithoutLogos = allLenders.filter(lender => !lender.hasLogo);
 
   return (
     <div className="logo-slide-section">
