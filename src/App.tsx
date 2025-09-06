@@ -147,18 +147,23 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      {/* Skip Links for Accessibility */}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <a href="#services" className="skip-link">Skip to services</a>
+      <a href="#contact" className="skip-link">Skip to contact</a>
+      
       {/* Clean Header */}
       <header className="header">
         <nav className="nav-container">
                           <a href="#home" className="logo" onClick={(e) => handleNavClick(e, 'home')}>
-                  <img src="/images/logos/logo.png" alt="Chop Loans" className="logo-image" />
+                  <img src="/images/logos/logo.png" alt="Chop Loans - Melbourne's Premier Loan Brokerage" className="logo-image" loading="eager" />
                 </a>
           
-          <ul className="nav-menu">
-            <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Services</a></li>
-            <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
-            <li><a href="#process" onClick={(e) => handleNavClick(e, 'process')}>Process</a></li>
-            <li><a href="#testimonials" onClick={(e) => handleNavClick(e, 'testimonials')}>Reviews</a></li>
+          <ul className="nav-menu" role="navigation" aria-label="Main navigation">
+            <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')} aria-label="Navigate to Services section">Services</a></li>
+            <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} aria-label="Navigate to About section">About</a></li>
+            <li><a href="#process" onClick={(e) => handleNavClick(e, 'process')} aria-label="Navigate to Process section">Process</a></li>
+            <li><a href="#testimonials" onClick={(e) => handleNavClick(e, 'testimonials')} aria-label="Navigate to Reviews section">Reviews</a></li>
           </ul>
 
           <div className="header-phone">
@@ -201,7 +206,7 @@ const App: React.FC = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="hero">
+      <section id="home" className="hero" role="main">
         <div className="hero-container">
           <h1>Chop Chop Loans – Fast, Fair & Always There</h1>
           <p>Melbourne's Top Brokerage - Tailored Solutions for Your Financial Journey with Ankush Chopra!</p>
@@ -319,25 +324,25 @@ const App: React.FC = () => {
           
           <div className="process-steps">
             <div className="process-step">
-              <img src="/images/process/preapprovalform.svg" alt="Initial Consultation" className="step-icon" />
+              <img src="/images/process/preapprovalform.svg" alt="Initial Consultation - Free consultation to discuss your financial goals and loan requirements" className="step-icon" loading="lazy" />
               <h3>Initial Consultation</h3>
               <p>Start with a free consultation to discuss your financial goals and loan requirements with our expert broker.</p>
             </div>
 
             <div className="process-step">
-              <img src="/images/process/compareloan.svg" alt="Compare Loans" className="step-icon" />
+              <img src="/images/process/compareloan.svg" alt="Compare Loans - We assess and get you several options to choose from with competitive rates" className="step-icon" loading="lazy" />
               <h3>Comparing Loans</h3>
               <p>Once we receive your form, we assess and get you several options to choose from with competitive rates.</p>
             </div>
 
             <div className="process-step">
-              <img src="/images/process/submitloan.svg" alt="Submit Documents" className="step-icon" />
+              <img src="/images/process/submitloan.svg" alt="Submit Documents - Once you choose your lender, we ask you to submit the required documents for final approval" className="step-icon" loading="lazy" />
               <h3>Submit Documents</h3>
               <p>Once you choose your lender, we ask you to submit the required documents for final approval.</p>
             </div>
 
             <div className="process-step">
-              <img src="/images/process/done-deal.svg" alt="Loan Approved" className="step-icon" />
+              <img src="/images/process/done-deal.svg" alt="Loan Approved - Once approved, funds will be deposited to your account according to the lender's standard timeframes" className="step-icon" loading="lazy" />
               <h3>Loan Deposit</h3>
               <p>Once approved, funds will be deposited to your account according to the lender's standard timeframes. Professional and reliable!</p>
             </div>
@@ -361,10 +366,11 @@ const App: React.FC = () => {
 
           <div className="founder-info">
             <div className="founder-image">
-              <img 
+                <img 
                 src="/images/photos/ankush-chopra-broker.jpg" 
-                alt="Ankush Chopra - Professional Loan Broker"
+                alt="Ankush Chopra - Professional Loan Broker with over a decade of experience in the financial sector"
                 className="founder-img"
+                loading="lazy"
               />
             </div>
             <div className="founder-text">

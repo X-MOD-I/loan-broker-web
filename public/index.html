@@ -4,16 +4,68 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/images/logos/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#1e40af" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Ankush Chopra" />
+    <meta name="keywords" content="home loans, personal loans, business loans, mortgage broker, Melbourne, Australia, Ankush Chopra, Chop Loans, loan broker, refinance, investment loans" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://choploans.com.au/" />
+    <meta property="og:title" content="Chop Loans - Melbourne's Premier Loan Brokerage" />
+    <meta property="og:description" content="Get competitive rates on home loans, personal loans, and business loans with Melbourne's top broker Ankush Chopra. 100% Free Service, No hidden fees." />
+    <meta property="og:image" content="%PUBLIC_URL%/images/logos/logo.png" />
+    <meta property="og:site_name" content="Chop Loans" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://choploans.com.au/" />
+    <meta property="twitter:title" content="Chop Loans - Melbourne's Premier Loan Brokerage" />
+    <meta property="twitter:description" content="Get competitive rates on home loans, personal loans, and business loans with Melbourne's top broker Ankush Chopra. 100% Free Service, No hidden fees." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/images/logos/logo.png" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Chop Loans",
+      "description": "Melbourne's Premier Loan Brokerage offering home loans, personal loans, and business loans",
+      "url": "https://choploans.com.au",
+      "telephone": "+61489210002",
+      "email": "choploansaus@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Melbourne",
+        "addressRegion": "Victoria",
+        "addressCountry": "AU"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Ankush Chopra",
+        "jobTitle": "Loan Broker"
+      },
+      "serviceType": ["Home Loans", "Personal Loans", "Business Loans", "Refinancing", "Investment Loans"],
+      "areaServed": "Melbourne, Victoria, Australia"
+    }
+    </script>
+    
     <meta
       name="description"
-      content="Chop Loans - Melbourne's Premier Loan Brokerage. Get competitive rates on home loans, personal loans, and business loans with Ankush Chopra."
+      content="Chop Loans - Melbourne's Premier Loan Brokerage. Get competitive rates on home loans, personal loans, and business loans with Ankush Chopra. 100% Free Service, No hidden fees."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/logos/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <title>Chop Loans - Melbourne's Premier Loan Brokerage</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+    
+    <!-- Preload hero image -->
+    <link rel="preload" href="%PUBLIC_URL%/images/photos/p1.jpg" as="image">
+    
+    <title>Chop Loans - Melbourne's Premier Loan Brokerage | Home Loans, Personal Loans, Business Loans</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

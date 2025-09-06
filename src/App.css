@@ -1,3 +1,22 @@
+/* Skip Links for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #3b82f6;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  font-weight: 600;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
 /* Header Styles */
 .header {
   background: rgba(255, 255, 255, 0.95);
@@ -8,6 +27,7 @@
   width: 100%;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  will-change: transform;
 }
 
 .nav-container {
@@ -44,6 +64,12 @@
   position: relative;
   padding: 0.5rem 0;
   transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-menu a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
 
 .nav-menu a::after {
@@ -80,13 +106,14 @@
   background: url('./assets/images/p1.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   color: white;
   padding: 10rem 2rem 6rem;
   text-align: center;
   margin-top: 90px;
   position: relative;
   overflow: hidden;
+  will-change: transform;
 }
 
 
@@ -177,6 +204,11 @@
   overflow: hidden;
 }
 
+.cta-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
 .cta-button::before {
   content: '';
   position: absolute;
@@ -205,11 +237,12 @@
     url('./assets/images/professional-handshake.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  will-change: transform;
 }
 
 .services::before {
@@ -328,9 +361,7 @@
   bottom: 0;
   background: 
     radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(139, 92, 246, 0.03) 0%, transparent 40%),
-    linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.02) 50%, transparent 70%);
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
 }
@@ -369,13 +400,12 @@
 }
 
 .service-card:hover {
-  transform: translateY(-12px) scale(1.03) rotateX(2deg);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: 
-    0 40px 120px rgba(0, 0, 0, 0.12),
-    0 20px 60px rgba(0, 0, 0, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.06),
-    inset 0 3px 0 rgba(255, 255, 255, 1),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.03);
+    0 25px 80px rgba(0, 0, 0, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.08),
+    0 6px 20px rgba(0, 0, 0, 0.06),
+    inset 0 2px 0 rgba(255, 255, 255, 1);
   border: 2px solid rgba(255, 255, 255, 0.8);
   background: 
     linear-gradient(135deg, 
@@ -387,15 +417,9 @@
 .service-card:hover::before {
   background: 
     linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.6) 0%, 
-      rgba(255, 255, 255, 0.2) 30%,
+      rgba(255, 255, 255, 0.4) 0%, 
       rgba(255, 255, 255, 0.1) 50%, 
-      rgba(255, 255, 255, 0.4) 100%),
-    linear-gradient(-45deg, 
-      transparent 30%, 
-      rgba(255, 255, 255, 0.3) 50%, 
-      transparent 70%);
-  animation: card-shimmer-hover 2s ease-in-out infinite;
+      rgba(255, 255, 255, 0.3) 100%);
 }
 
 .service-card h3 {
@@ -545,23 +569,7 @@
   width: 100%;
 }
 
-/* Option 1: Gradient Arrow (uncomment to use)
-.service-item::before {
-  content: '▶';
-  position: absolute;
-  left: 0;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  transform: translateY(2px);
-}
-*/
-
-/* Option 2: Checkmark */
+/* Checkmark */
 .service-item::before {
   content: '✓';
   position: absolute;
@@ -581,65 +589,6 @@
   justify-content: center;
 }
 
-/* Option 3: Modern Square (uncomment to use)
-.service-item::before {
-  content: '';
-  position: absolute;
-  left: 2px;
-  top: 12px;
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(135deg, #3b82f6, #06b6d4);
-  border-radius: 2px;
-  transform: rotate(45deg);
-}
-*/
-
-/* Option 4: Circle Bullet (uncomment to use)
-.service-item::before {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 12px;
-  width: 8px;
-  height: 8px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
-}
-*/
-
-/* Option 5: Star (uncomment to use)
-.service-item::before {
-  content: '★';
-  position: absolute;
-  left: 0;
-  color: #f59e0b;
-  font-weight: bold;
-  font-size: 1rem;
-  line-height: 1.5;
-  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
-}
-*/
-
-/* Option 6: Plus Icon (uncomment to use)
-.service-item::before {
-  content: '+';
-  position: absolute;
-  left: 2px;
-  color: #3b82f6;
-  font-weight: bold;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  background: rgba(59, 130, 246, 0.1);
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-*/
 
 .service-item:hover {
   color: #1e40af;
@@ -712,9 +661,10 @@
     url('./assets/images/process-work.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  will-change: transform;
 }
 
 .process::before {
@@ -810,9 +760,10 @@
     url('./assets/images/my-info-background.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  will-change: transform;
 }
 
 .about::before {
@@ -905,9 +856,10 @@
     url('./assets/images/happy-feedback.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  will-change: transform;
 }
 
 .testimonials::before {
@@ -1016,6 +968,11 @@
   flex-shrink: 0;
 }
 
+.testimonial-nav-btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
 .testimonial-nav-btn:hover {
   background: #6366f1;
   color: #ffffff;
@@ -1043,6 +1000,11 @@
   background: #d1d5db;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.testimonial-dot:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
 
 .testimonial-dot.active {
@@ -1094,9 +1056,10 @@
     url('./assets/images/talking-and-asking-questions.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  will-change: transform;
 }
 
 .faq::before {
@@ -1161,6 +1124,12 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.faq-question:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
 
 .faq-question:hover {
@@ -1198,12 +1167,13 @@
     url('./assets/images/home-loan.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   color: white;
   padding: 4rem 2rem 2rem;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  will-change: transform;
 }
 
 .footer::before {
@@ -1944,30 +1914,27 @@
   }
 }
 
-/* Premium Service Animations */
+/* Premium Service Animations - Optimized for performance */
 @keyframes subtle-move {
   0%, 100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     opacity: 1;
   }
   50% {
-    transform: translateY(-5px) scale(1.01);
-    opacity: 0.9;
+    transform: translateY(-3px);
+    opacity: 0.95;
   }
 }
 
 @keyframes float-pattern {
   0% {
-    transform: translateX(0) translateY(0) rotate(0deg);
+    transform: translateX(0) translateY(0);
   }
-  33% {
-    transform: translateX(-10px) translateY(-15px) rotate(1deg);
-  }
-  66% {
-    transform: translateX(5px) translateY(-10px) rotate(-1deg);
+  50% {
+    transform: translateX(-5px) translateY(-8px);
   }
   100% {
-    transform: translateX(0) translateY(0) rotate(0deg);
+    transform: translateX(0) translateY(0);
   }
 }
 
@@ -2006,25 +1973,3 @@
     gap: 1.5rem;
   }
 }
-
-@keyframes card-shimmer {
-  0%, 100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translateX(1px);
-  }
-}
-
-@keyframes card-shimmer-hover {
-  0%, 100% {
-    opacity: 1;
-    background-position: 0% 0%;
-  }
-  50% {
-    opacity: 0.9;
-    background-position: 100% 100%;
-  }
-} 

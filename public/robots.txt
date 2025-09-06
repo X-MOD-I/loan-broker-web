@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://choploans.com.au/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /_netlify/
