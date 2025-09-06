@@ -913,12 +913,17 @@
   flex: 1;
   overflow: hidden;
   border-radius: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .testimonials-track {
   display: flex;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 2.5rem;
+  align-items: stretch;
+  width: calc(3 * 350px + 2 * 2.5rem);
+  min-width: calc(3 * 350px + 2 * 2.5rem);
 }
 
 .testimonials-grid {
@@ -933,8 +938,8 @@
   backdrop-filter: blur(15px);
   padding: 2rem;
   border-radius: 14px;
-  flex: 0 0 calc(33.333% - 1.67rem);
-  min-width: 350px;
+  flex: 0 0 350px;
+  width: 350px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -1491,6 +1496,7 @@
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
+    min-width: auto;
   }
   
   .testimonials-slider {
@@ -1552,6 +1558,10 @@
   
   .testimonials-slider {
     margin: 0 0.5rem;
+  }
+  
+  .testimonials-track {
+    min-width: auto;
   }
   
   .testimonial-card {

@@ -16,6 +16,19 @@ const App: React.FC = () => {
     currentTestimonialIndex: 0
   });
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const toggleFaq = (index: number): void => {
     setState(prev => ({
       ...prev,
@@ -74,7 +87,7 @@ const App: React.FC = () => {
   const nextTestimonials = (): void => {
     setState(prev => {
       // On mobile, show 1 testimonial at a time, on desktop show 3
-      const itemsPerView = window.innerWidth <= 768 ? 1 : 3;
+      const itemsPerView = isMobile ? 1 : 3;
       const maxIndex = Math.max(0, testimonials.length - itemsPerView);
       const nextIndex = prev.currentTestimonialIndex + itemsPerView;
       return {
@@ -87,7 +100,7 @@ const App: React.FC = () => {
   const prevTestimonials = (): void => {
     setState(prev => {
       // On mobile, show 1 testimonial at a time, on desktop show 3
-      const itemsPerView = window.innerWidth <= 768 ? 1 : 3;
+      const itemsPerView = isMobile ? 1 : 3;
       const maxIndex = Math.max(0, testimonials.length - itemsPerView);
       const prevIndex = prev.currentTestimonialIndex - itemsPerView;
       return {
@@ -370,7 +383,7 @@ const App: React.FC = () => {
           <h2 className="section-title">Words of Appreciation from Our Valued Customers!!</h2>
           
           <div className="testimonials-slider-wrapper">
-            {testimonials.length > (window.innerWidth <= 768 ? 1 : 3) && (
+            {testimonials.length > (isMobile ? 1 : 3) && (
               <button 
                 className="testimonial-nav-btn prev-btn" 
                 onClick={prevTestimonials}
@@ -384,7 +397,7 @@ const App: React.FC = () => {
               <div 
                 className="testimonials-track"
                 style={{
-                  transform: `translateX(-${state.currentTestimonialIndex * (window.innerWidth <= 768 ? 100 : 100 / 3)}%)`
+                  transform: `translateX(-${state.currentTestimonialIndex * (isMobile ? 100 : 100 / 3)}%)`
                 }}
               >
                 {testimonials.map((testimonial: Testimonial, index: number) => (
@@ -399,7 +412,7 @@ const App: React.FC = () => {
               </div>
             </div>
             
-            {testimonials.length > (window.innerWidth <= 768 ? 1 : 3) && (
+            {testimonials.length > (isMobile ? 1 : 3) && (
               <button 
                 className="testimonial-nav-btn next-btn" 
                 onClick={nextTestimonials}
@@ -410,14 +423,14 @@ const App: React.FC = () => {
             )}
           </div>
           
-          {testimonials.length > (window.innerWidth <= 768 ? 1 : 3) && (
+          {testimonials.length > (isMobile ? 1 : 3) && (
             <div className="testimonials-dots">
-              {Array.from({ length: Math.ceil(testimonials.length / (window.innerWidth <= 768 ? 1 : 3)) }, (_, i) => (
+              {Array.from({ length: Math.ceil(testimonials.length / (isMobile ? 1 : 3)) }, (_, i) => (
                 <button
                   key={i}
-                  className={`testimonial-dot ${Math.floor(state.currentTestimonialIndex / (window.innerWidth <= 768 ? 1 : 3)) === i ? 'active' : ''}`}
-                  onClick={() => setState(prev => ({ ...prev, currentTestimonialIndex: i * (window.innerWidth <= 768 ? 1 : 3) }))}
-                  aria-label={`Go to testimonials ${i * (window.innerWidth <= 768 ? 1 : 3) + 1}-${Math.min((i + 1) * (window.innerWidth <= 768 ? 1 : 3), testimonials.length)}`}
+                  className={`testimonial-dot ${Math.floor(state.currentTestimonialIndex / (isMobile ? 1 : 3)) === i ? 'active' : ''}`}
+                  onClick={() => setState(prev => ({ ...prev, currentTestimonialIndex: i * (isMobile ? 1 : 3) }))}
+                  aria-label={`Go to testimonials ${i * (isMobile ? 1 : 3) + 1}-${Math.min((i + 1) * (isMobile ? 1 : 3), testimonials.length)}`}
                 />
               ))}
             </div>
