@@ -192,10 +192,9 @@ const App: React.FC = () => {
               onClick={() => setState(prev => ({...prev, showDiscoveryForm: true}))} 
               className="cta-button primary"
             >
-                                  Book Free 30-Min Discovery Call
+              Book Free 30-Min Discovery Call
             </button>
           </div>
-
         </div>
       </section>
 
@@ -339,14 +338,23 @@ const App: React.FC = () => {
           </div>
 
           <div className="founder-info">
-            <h3>Meet Your Broker</h3>
-            <h4 style={{color: '#1e293b', marginBottom: '1rem'}}>Ankush Chopra</h4>
-            <p style={{color: '#64748b', marginBottom: '1rem'}}>
-              With over a decade of experience in the financial sector, Ankush Chopra has built Chop Loans with a focus on innovation, customer-centric solutions, and sustainable growth.
-            </p>
-            <p style={{color: '#64748b'}}>
-              His commitment to helping clients navigate their financial journeys and expertise in the Melbourne market continues to drive the company's success and excellent customer satisfaction rates.
-            </p>
+            <div className="founder-image">
+              <img 
+                src="/images/photos/ankush-chopra-broker.jpg" 
+                alt="Ankush Chopra - Professional Loan Broker"
+                className="founder-img"
+              />
+            </div>
+            <div className="founder-text">
+              <h3>Meet Your Broker</h3>
+              <h4 style={{color: '#1e293b', marginBottom: '1rem'}}>Ankush Chopra</h4>
+              <p style={{color: '#64748b', marginBottom: '1rem'}}>
+                With over a decade of experience in the financial sector, Ankush Chopra has built Chop Loans with a focus on innovation, customer-centric solutions, and sustainable growth.
+              </p>
+              <p style={{color: '#64748b'}}>
+                His commitment to helping clients navigate their financial journeys and expertise in the Melbourne market continues to drive the company's success and excellent customer satisfaction rates.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -98,6 +98,7 @@
   z-index: 2;
 }
 
+
 .hero h1 {
   font-size: 4.5rem;
   font-weight: 900;
@@ -1633,6 +1634,42 @@
   }
   100% {
     transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+/* New Image Styles for Enhanced Sections */
+.founder-info {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.founder-image {
+  display: flex;
+  justify-content: center;
+}
+
+.founder-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #3b82f6;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+}
+
+.founder-text h3 {
+  margin-bottom: 0.5rem;
+}
+
+
+/* Mobile Responsive for About Section */
+@media (max-width: 768px) {
+  .founder-info {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.5rem;
   }
 }
 
