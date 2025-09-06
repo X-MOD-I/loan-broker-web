@@ -1,6 +1,11 @@
 /* Bank Logo Slider Styles */
 .logo-slide-section {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+  background: 
+    linear-gradient(135deg, rgba(248, 250, 252, 0.6) 0%, rgba(241, 245, 249, 0.6) 50%, rgba(226, 232, 240, 0.6) 100%),
+    url('../assets/images/lending partners.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: 6rem 0;
   position: relative;
   overflow: hidden;
@@ -482,6 +487,10 @@
 }
 
 @media (max-width: 768px) {
+  .logo-slide-section {
+    background-attachment: scroll;
+  }
+  
   .logo-item {
     width: 200px;
     height: 100px;
